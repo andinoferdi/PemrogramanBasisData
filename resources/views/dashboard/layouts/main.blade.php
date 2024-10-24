@@ -1,250 +1,67 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Responsive Admin & Dashboard Template based on Bootstrap 5">
-    <meta name="author" content="AdminKit">
+    <base href="">
+    <title>Dahboard | Metronic</title>
+    <meta name="description"
+        content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue & Laravel versions. Grab your copy now and get life-time updates for free." />
     <meta name="keywords"
-        content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="{{ asset('assets/img/icons/icon-48x48.png') }}" />
-    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
-    <title>@yield('title', 'AdminKit Demo - Bootstrap 5 Admin Template')</title>
-    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+        content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title"
+        content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme" />
+    <meta property="og:url" content="https://keenthemes.com/metronic" />
+    <meta property="og:site_name" content="Keenthemes | Metronic" />
+    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="{{ asset('assets/plugins/custom/leaflet/leaflet.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
-    <div class="wrapper">
-        @include('dashboard.layouts.sidebar')
-        <div class="main">
-            @include('dashboard.layouts.header')
-            @yield('content')
-            @include('dashboard.layouts.footer')
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled">
+    <div class="d-flex flex-column flex-root">
+        <div class="page d-flex flex-row flex-column-fluid">
+            @include('dashboard.layouts.sidebar')
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                @include('dashboard.layouts.header')
+                @yield('content')
+                @include('dashboard.layouts.footer')
+            </div>
         </div>
     </div>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
 
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <span class="svg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1"
+                    transform="rotate(90 13 6)" fill="black" />
+                <path
+                    d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z"
+                    fill="black" />
+            </svg>
+        </span>
+    </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-            var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-            gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-            gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-
-            // Line chart
-            new Chart(document.getElementById("chartjs-dashboard-line"), {
-                type: "line",
-                data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
-                        "Dec"
-                    ],
-                    datasets: [{
-                        label: "Sales ($)",
-                        fill: true,
-                        backgroundColor: gradient,
-                        borderColor: window.theme.primary,
-                        data: [2115, 1562, 1584, 1892, 1587, 1923, 2566, 2448, 2805, 3438, 2917,
-                            3327
-                        ]
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    legend: {
-                        display: false
-                    },
-                    tooltips: {
-                        intersect: false
-                    },
-                    hover: {
-                        intersect: true
-                    },
-                    plugins: {
-                        filler: {
-                            propagate: false
-                        }
-                    },
-                    scales: {
-                        xAxes: [{
-                            reverse: true,
-                            gridLines: {
-                                color: "rgba(0,0,0,0.0)"
-                            }
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                stepSize: 1000
-                            },
-                            display: true,
-                            borderDash: [3, 3],
-                            gridLines: {
-                                color: "rgba(0,0,0,0.0)"
-                            }
-                        }]
-                    }
-                }
-            });
-        });
+        var hostUrl = "{{ asset('assets') }}/";
     </script>
+    <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custom/leaflet/leaflet.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/modals/select-location.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/modals/create-app.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('assets/plugins/chart.js/chart.min.js') }}"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Pie chart
-            new Chart(document.getElementById("chartjs-dashboard-pie"), {
-                type: "pie",
-                data: {
-                    labels: ["Chrome", "Firefox", "IE"],
-                    datasets: [{
-                        data: [4306, 3801, 1689],
-                        backgroundColor: [window.theme.primary, window.theme.warning, window.theme
-                            .danger
-                        ],
-                        borderWidth: 5
-                    }]
-                },
-                options: {
-                    responsive: !window.MSInputMethodContext,
-                    maintainAspectRatio: false,
-                    legend: {
-                        display: false
-                    },
-                    cutoutPercentage: 75
-                }
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            new Chart(document.getElementById("chartjs-dashboard-bar"), {
-                type: "bar",
-                data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
-                        "Dec"
-                    ],
-                    datasets: [{
-                        label: "This year",
-                        backgroundColor: window.theme.primary,
-                        borderColor: window.theme.primary,
-                        hoverBackgroundColor: window.theme.primary,
-                        hoverBorderColor: window.theme.primary,
-                        data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
-                        barPercentage: .75,
-                        categoryPercentage: .5
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        yAxes: [{
-                            gridLines: {
-                                display: false
-                            },
-                            stacked: false,
-                            ticks: {
-                                stepSize: 20
-                            }
-                        }],
-                        xAxes: [{
-                            stacked: false,
-                            gridLines: {
-                                color: "transparent"
-                            }
-                        }]
-                    }
-                }
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var markers = [{
-                    coords: [31.230391, 121.473701],
-                    name: "Shanghai"
-                },
-                {
-                    coords: [28.704060, 77.102493],
-                    name: "Delhi"
-                },
-                {
-                    coords: [6.524379, 3.379206],
-                    name: "Lagos"
-                },
-                {
-                    coords: [35.689487, 139.691711],
-                    name: "Tokyo"
-                },
-                {
-                    coords: [23.129110, 113.264381],
-                    name: "Guangzhou"
-                },
-                {
-                    coords: [40.7127837, -74.0059413],
-                    name: "New York"
-                },
-                {
-                    coords: [34.052235, -118.243683],
-                    name: "Los Angeles"
-                },
-                {
-                    coords: [41.878113, -87.629799],
-                    name: "Chicago"
-                },
-                {
-                    coords: [51.507351, -0.127758],
-                    name: "London"
-                },
-                {
-                    coords: [40.416775, -3.703790],
-                    name: "Madrid"
-                }
-            ];
-            var map = new jsVectorMap({
-                map: "world",
-                selector: "#world_map",
-                zoomButtons: true,
-                markers: markers,
-                markerStyle: {
-                    initial: {
-                        r: 9,
-                        strokeWidth: 7,
-                        stokeOpacity: .4,
-                        fill: window.theme.primary
-                    },
-                    hover: {
-                        fill: window.theme.primary,
-                        stroke: window.theme.primary
-                    }
-                },
-                zoomOnScroll: false
-            });
-            window.addEventListener("resize", () => {
-                map.updateSize();
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
-            var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-            document.getElementById("datetimepicker-dashboard").flatpickr({
-                inline: true,
-                prevArrow: "<span title=\"Previous month\">&laquo;</span>",
-                nextArrow: "<span title=\"Next month\">&raquo;</span>",
-                defaultDate: defaultDate
-            });
-        });
-    </script>
 
 </body>
 

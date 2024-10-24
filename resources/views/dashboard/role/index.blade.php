@@ -1,0 +1,43 @@
+@extends('dashboard.layouts.main')
+
+@section('content')
+    <div class="container-xxl" id="kt_content_container">
+        <div class="card">
+            <div class="card-header border-0 pt-6">
+                <h1 class="h3"><strong>Daftar Role</strong></h1>
+                <div class="card-toolbar">
+                    <a href="{{ route('role.create') }}" class="btn btn-primary">Tambah Role</a>
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <table class="table align-middle table-row-dashed fs-6 gy-5">
+                    <thead>
+                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                            <th>No</th>
+                            <th>Nama Role</th>
+                            <th class="min-w-100px">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fw-semibold text-gray-600">
+                        @foreach ($roles as $role)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $role->nama_role }}</td>
+                                <td>
+                                    <a href="{{ route('role.edit', $role->idrole) }}"
+                                        class="btn btn-warning btn-sm">Edit</a>
+                                    <form action="{{ route('role.destroy', $role->idrole) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+@endsection
