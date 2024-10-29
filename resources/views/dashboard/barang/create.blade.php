@@ -16,11 +16,21 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="idsatuan" class="form-label">Satuan</label>
-                        <select name="idsatuan" class="form-select" required>
+                        <label for="jenis" class="form-label">Jenis</label>
+                        <input type="text" name="jenis" class="form-control" maxlength="1" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="number" name="harga" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="satuan_id" class="form-label">Satuan</label>
+                        <select name="satuan_id" class="form-select" required>
                             <option value="">-- Pilih Satuan --</option>
                             @foreach ($satuan as $s)
-                                <option value="{{ $s->idsatuan }}">{{ $s->nama_satuan }}</option>
+                                <option value="{{ $s->satuan_id }}">{{ $s->nama_satuan }}</option>
                             @endforeach
                         </select>
                     </div>

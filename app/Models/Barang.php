@@ -1,5 +1,5 @@
 <?php
-// app/Models/Barang.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,16 +10,19 @@ class Barang extends Model
     use HasFactory;
 
     protected $table = 'barang';
-    protected $primaryKey = 'idbarang';
+    protected $primaryKey = 'barang_id';
     public $timestamps = false;
+    
     protected $fillable = [
         'nama_barang',
-        'idsatuan',
+        'jenis',
+        'harga',
+        'satuan_id',
         'status',
     ];
 
     public function satuan()
     {
-        return $this->belongsTo(Satuan::class, 'idsatuan');
+        return $this->belongsTo(Satuan::class, 'satuan_id');
     }
 }

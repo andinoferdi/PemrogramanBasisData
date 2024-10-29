@@ -18,10 +18,10 @@
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <div class="mb-3">
-                        <label for="idrole" class="form-label">Role</label>
-                        <select class="form-control" id="idrole" name="idrole" required>
+                        <label for="role_id" class="form-label">Role</label>
+                        <select class="form-control" id="role_id" name="role_id" required>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->idrole }}">{{ $role->nama_role }}</option>
+                                <option value="{{ $role->role_id }}">{{ $role->nama_role }}</option>
                             @endforeach
                         </select>
                     </div>

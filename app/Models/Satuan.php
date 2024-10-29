@@ -11,7 +11,7 @@ class Satuan extends Model
     use HasFactory;
 
     protected $table = 'satuan';
-    protected $primaryKey = 'idsatuan';
+    protected $primaryKey = 'satuan_id';
     public $timestamps = false;
 
 

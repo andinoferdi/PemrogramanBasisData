@@ -7,7 +7,7 @@
                 <h1 class="h3"><strong>Edit Role</strong></h1>
             </div>
             <div class="card-body pt-0">
-                <form action="{{ route('role.update', $role->idrole) }}" method="POST">
+                <form action="{{ route('role.update', $role->role_id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">

@@ -9,13 +9,13 @@ class Role extends Model
 {
     use HasFactory;
 
-    protected $table = 'role'; // Nama tabel di database
+    protected $table = 'role';
 
-    protected $primaryKey = 'idrole'; // Primary key yang benar
+    protected $primaryKey = 'role_id';
 
     protected $fillable = [
         'nama_role'
     ];
 
-    public $timestamps = false; // Nonaktifkan timestamps
+    public $timestamps = false;
 }

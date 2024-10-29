@@ -6,18 +6,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    protected $table = 'user'; // Nama tabel di database
+    protected $table = 'user';
 
-    protected $primaryKey = 'iduser'; // Primary key yang sesuai dengan tabel
+    protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'username', 'password', 'idrole'
+        'username', 'password', 'role_id'
     ];
 
     public $timestamps = false;
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'idrole', 'idrole');
+        return $this->belongsTo(Role::class, 'role_id', 'role_id');
     }
 }

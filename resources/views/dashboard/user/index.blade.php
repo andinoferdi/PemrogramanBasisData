@@ -26,9 +26,9 @@
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->role->nama_role }}</td>
                                 <td>
-                                    <a href="{{ route('user.edit', $user->iduser) }}"
+                                    <a href="{{ route('user.edit', $user->user_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('user.destroy', $user->iduser) }}" method="POST"
+                                    <form action="{{ route('user.destroy', $user->user_id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')

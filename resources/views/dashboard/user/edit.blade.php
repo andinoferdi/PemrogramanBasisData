@@ -7,7 +7,7 @@
                 <h1 class="h3"><strong>Edit User</strong></h1>
             </div>
             <div class="card-body pt-0">
-                <form action="{{ route('user.update', $user->iduser) }}" method="POST">
+                <form action="{{ route('user.update', $user->user_id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
@@ -20,10 +20,11 @@
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
                     <div class="mb-3">
-                        <label for="idrole" class="form-label">Role</label>
-                        <select class="form-control" id="idrole" name="idrole" required>
+                        <label for="role_id" class="form-label">Role</label>
+                        <select class="form-control" id="role_id" name="role_id" required>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->idrole }}" {{ $role->idrole == $user->idrole ? 'selected' : '' }}>
+                                <option value="{{ $role->role_id }}"
+                                    {{ $role->role_id == $user->role_id ? 'selected' : '' }}>
                                     {{ $role->nama_role }}
                                 </option>
                             @endforeach

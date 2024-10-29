@@ -8,7 +8,7 @@
             </div>
 
             <div class="card-body pt-0">
-                <form action="{{ route('satuan.update', $satuan->idsatuan) }}" method="POST">
+                <form action="{{ route('satuan.update', $satuan->satuan_id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">

@@ -31,7 +31,7 @@ class RoleController extends Controller
    // Method edit
 public function edit($id)
 {
-    $role = Role::find($id); // Mencari role berdasarkan 'idrole'
+    $role = Role::find($id); 
     return view('dashboard.role.edit', compact('role'));
 }
 
@@ -42,7 +42,7 @@ public function update(Request $request, $id)
         'nama_role' => 'required',
     ]);
 
-    $role = Role::find($id); // Mencari role berdasarkan 'idrole'
+    $role = Role::find($id); 
     $role->update($request->all());
 
     return redirect()->route('role.index')->with('success', 'Role updated successfully.');
@@ -51,7 +51,7 @@ public function update(Request $request, $id)
 // Method destroy
 public function destroy($id)
 {
-    $role = Role::find($id); // Mencari role berdasarkan 'idrole'
+    $role = Role::find($id);
     $role->delete();
 
     return redirect()->route('role.index')->with('success', 'Role deleted successfully.');

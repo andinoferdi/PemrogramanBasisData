@@ -24,9 +24,9 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $role->nama_role }}</td>
                                 <td>
-                                    <a href="{{ route('role.edit', $role->idrole) }}"
+                                    <a href="{{ route('role.edit', $role->role_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('role.destroy', $role->idrole) }}" method="POST"
+                                    <form action="{{ route('role.destroy', $role->role_id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')

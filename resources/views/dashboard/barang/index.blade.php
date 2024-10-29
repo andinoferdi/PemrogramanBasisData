@@ -24,6 +24,8 @@
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th>No</th>
                             <th>Nama Barang</th>
+                            <th>Jenis</th>
+                            <th>Harga</th>
                             <th>Satuan</th>
                             <th>Status</th>
                             <th class="min-w-100px">Aksi</th>
@@ -34,12 +36,14 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_barang }}</td>
+                                <td>{{ $item->jenis }}</td>
+                                <td>{{ $item->harga }}</td>
                                 <td>{{ $item->satuan->nama_satuan ?? 'Tidak ada satuan' }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>
-                                    <a href="{{ route('barang.edit', $item->idbarang) }}"
+                                    <a href="{{ route('barang.edit', $item->barang_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('barang.destroy', $item->idbarang) }}" method="POST"
+                                    <form action="{{ route('barang.destroy', $item->barang_id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
