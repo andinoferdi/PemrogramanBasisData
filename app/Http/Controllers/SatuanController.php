@@ -2,58 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Satuan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SatuanController extends Controller
 {
-    public function index()
-    {
-        $satuan = Satuan::all();
-        return view('dashboard.satuan.index', compact('satuan'));
-    }
-
-    public function create()
-    {
-        return view('dashboard.satuan.create');
-    }
-
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama_satuan' => 'required',
-            'status' => 'required',
-        ]);
+{
+    $request->validate([
+        'nama_satuan' => 'required|string|max:255',
+    ]);
 
-        Satuan::create($request->all());
+    DB::select('CALL InsertSatuan(?)', [
+        $request->nama_satuan
+    ]);
 
-        return redirect()->route('satuan.index')->with('success', 'Satuan berhasil ditambahkan.');
-    }
+    return redirect()->route('satuan.index')->with('success', 'Satuan berhasil ditambahkan!');
+}
 
-    public function edit($id)
-    {
-        $satuan = Satuan::findOrFail($id);
-        return view('dashboard.satuan.edit', compact('satuan'));
-    }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_satuan' => 'required',
-            'status' => 'required',
+            'nama_satuan' => 'required|string|max:255',
         ]);
 
-        $satuan = Satuan::findOrFail($id);
-        $satuan->update($request->all());
+        $result = DB::select('CALL UpdateSatuan(?, ?)', [
+            $id,
+            $request->input('nama_satuan'),
+        ]);
 
-        return redirect()->route('satuan.index')->with('success', 'Satuan berhasil diperbarui.');
+        if ($result) {
+            return redirect()->route('satuan.index')->with('success', 'Satuan berhasil diperbarui!');
+        }
+
+        return redirect()->route('satuan.index')->with('error', 'Gagal memperbarui satuan.');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        $satuan = Satuan::findOrFail($id);
-        $satuan->delete();
+        $result = DB::select('CALL DeleteSatuan(?)', [$id]);
 
-        return redirect()->route('satuan.index')->with('success', 'Satuan berhasil dihapus.');
+        if ($result) {
+            return redirect()->route('satuan.index')->with('success', 'Satuan berhasil dihapus!');
+        }
+
+        return redirect()->route('satuan.index')->with('error', 'Gagal menghapus satuan.');
     }
 }

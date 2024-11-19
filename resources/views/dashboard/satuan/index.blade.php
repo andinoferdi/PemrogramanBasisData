@@ -33,16 +33,17 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_satuan }}</td>
-                                <td>{{ $item->status }}</td>
+                                <td>{{ $item->status ? 'Aktif' : 'Tidak Aktif' }}</td>
                                 <td>
                                     <a href="{{ route('satuan.edit', $item->satuan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('satuan.destroy', $item->satuan_id) }}" method="POST"
+                                    <form action="{{ route('satuan.delete', $item->satuan_id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                     </form>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -52,3 +53,5 @@
         </div>
     </div>
 @endsection
+
+@section('script')

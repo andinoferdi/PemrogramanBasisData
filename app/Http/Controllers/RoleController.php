@@ -2,59 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
-    public function index()
-    {
-        $roles = Role::all();
-        return view('dashboard.role.index', compact('roles'));
-    }
-
-    public function create()
-    {
-        return view('dashboard.role.create');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
-            'nama_role' => 'required',
+            'nama_role' => 'required|string|max:100',
         ]);
 
-        Role::create($request->all());
-        return redirect()->route('role.index')->with('success', 'Role created successfully.');
+        try {
+            DB::select('CALL InsertRole(?)', [
+                $request->input('nama_role'),
+            ]);
+
+            return redirect()->route('role.index')->with('success', 'Role berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            return redirect()->route('role.index')->with('error', 'Gagal menambahkan role: ' . $e->getMessage());
+        }
     }
 
-   // Method edit
-public function edit($id)
-{
-    $role = Role::find($id); 
-    return view('dashboard.role.edit', compact('role'));
-}
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_role' => 'required|string|max:100',
+        ]);
 
-// Method update
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'nama_role' => 'required',
-    ]);
+        try {
+            DB::select('CALL UpdateRole(?, ?)', [
+                $id,
+                $request->input('nama_role'),
+            ]);
 
-    $role = Role::find($id); 
-    $role->update($request->all());
+            return redirect()->route('role.index')->with('success', 'Role berhasil diperbarui!');
+        } catch (\Exception $e) {
+            return redirect()->route('role.index')->with('error', 'Gagal memperbarui role: ' . $e->getMessage());
+        }
+    }
 
-    return redirect()->route('role.index')->with('success', 'Role updated successfully.');
-}
+    public function delete($id)
+    {
+        try {
+            DB::select('CALL DeleteRole(?)', [$id]);
 
-// Method destroy
-public function destroy($id)
-{
-    $role = Role::find($id);
-    $role->delete();
-
-    return redirect()->route('role.index')->with('success', 'Role deleted successfully.');
-}
-
+            return redirect()->route('role.index')->with('success', 'Role berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('role.index')->with('error', 'Gagal menghapus role: ' . $e->getMessage());
+        }
+    }
 }

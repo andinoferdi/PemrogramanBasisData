@@ -2,58 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VendorController extends Controller
 {
-    public function index()
-    {
-        $vendors = Vendor::all();
-        return view('dashboard.vendor.index', compact('vendors'));
-    }
-
-    public function create()
-    {
-        return view('dashboard.vendor.create');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
-            'nama_vendor' => 'required',
-            'badan_hukum' => 'required',
-            'status' => 'required',
+            'nama_vendor' => 'required|string|max:100',
+            'badan_hukum' => 'required|in:P,C', 
+            'status' => 'required|in:A,I',
         ]);
 
-        Vendor::create($request->all());
-        return redirect()->route('vendor.index')->with('success', 'Vendor created successfully.');
+        try {
+            DB::select('CALL InsertVendor(?, ?, ?)', [
+                $request->input('nama_vendor'),
+                $request->input('badan_hukum'),
+                $request->input('status'),
+            ]);
+
+            return redirect()->route('vendor.index')->with('success', 'Vendor berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            return redirect()->route('vendor.index')->with('error', 'Gagal menambahkan vendor: ' . $e->getMessage());
+        }
     }
-public function edit($id)
-{
-    $vendor = Vendor::find($id); // Mencari vendor berdasarkan 'idvendor'
-    return view('dashboard.vendor.edit', compact('vendor'));
-}
 
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'nama_vendor' => 'required',
-        'badan_hukum' => 'required',
-        'status' => 'required',
-    ]);
-
-    $vendor = Vendor::find($id); // Mencari vendor berdasarkan 'idvendor'
-    $vendor->update($request->all());
-
-    return redirect()->route('vendor.index')->with('success', 'Vendor updated successfully.');
-}
-
-
-    public function destroy($id)
+    public function update(Request $request, $id)
     {
-        $vendor = Vendor::find($id);
-        $vendor->delete();
-        return redirect()->route('vendor.index')->with('success', 'Vendor deleted successfully.');
+        $request->validate([
+            'nama_vendor' => 'required|string|max:100',
+            'badan_hukum' => 'required|in:P,C',
+            'status' => 'required|in:A,I',
+        ]);
+
+        try {
+            DB::select('CALL UpdateVendor(?, ?, ?, ?)', [
+                $id,
+                $request->input('nama_vendor'),
+                $request->input('badan_hukum'),
+                $request->input('status'),
+            ]);
+
+            return redirect()->route('vendor.index')->with('success', 'Vendor berhasil diperbarui!');
+        } catch (\Exception $e) {
+            return redirect()->route('vendor.index')->with('error', 'Gagal memperbarui vendor: ' . $e->getMessage());
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            DB::select('CALL DeleteVendor(?)', [$id]);
+
+            return redirect()->route('vendor.index')->with('success', 'Vendor berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('vendor.index')->with('error', 'Gagal menghapus vendor: ' . $e->getMessage());
+        }
     }
 }

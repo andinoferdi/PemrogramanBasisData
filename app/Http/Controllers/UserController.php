@@ -2,70 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Role;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $users = User::with('role')->get();
-        return view('dashboard.user.index', compact('users'));
-    }
-
-    public function create()
-    {
-        $roles = Role::all();
-        return view('dashboard.user.create', compact('roles'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-            'role_id' => 'required',
+            'username' => 'required|string|max:45',
+            'password' => 'required|string|min:8',
+            'role_id' => 'required|integer|exists:role,role_id',
         ]);
 
-        User::create([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'role_id' => $request->role_id,
-        ]);
+        try {
+            $hashedPassword = bcrypt($request->input('password'));
+            DB::select('CALL InsertUser(?, ?, ?)', [
+                $request->input('username'),
+                $hashedPassword,
+                $request->input('role_id'),
+            ]);
 
-        return redirect()->route('user.index')->with('success', 'User created successfully.');
-    }
-
-    public function edit($id)
-    {
-        $user = User::findOrFail($id);
-        $roles = Role::all();
-        return view('dashboard.user.edit', compact('user', 'roles'));
+            return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with('error', 'Gagal menambahkan user: ' . $e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required',
-            'role_id' => 'required',
+            'username' => 'required|string|max:45',
+            'password' => 'nullable|string|min:8',
+            'role_id' => 'required|integer|exists:role,role_id',
         ]);
 
-        $user = User::findOrFail($id);
-        $user->update($request->only(['username', 'role_id']));
+        try {
+            $hashedPassword = $request->input('password') ? bcrypt($request->input('password')) : null;
 
-        if ($request->password) {
-            $user->update(['password' => Hash::make($request->password)]);
+            DB::select('CALL UpdateUser(?, ?, ?, ?)', [
+                $id,
+                $request->input('username'),
+                $hashedPassword ?? DB::table('user')->where('user_id', $id)->value('password'),
+                $request->input('role_id'),
+            ]);
+
+            return redirect()->route('user.index')->with('success', 'User berhasil diperbarui!');
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with('error', 'Gagal memperbarui user: ' . $e->getMessage());
         }
-
-        return redirect()->route('user.index')->with('success', 'User updated successfully.');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect()->route('user.index')->with('success', 'User deleted successfully.');
+        try {
+            DB::select('CALL DeleteUser(?)', [$id]);
+
+            return redirect()->route('user.index')->with('success', 'User berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with('error', 'Gagal menghapus user: ' . $e->getMessage());
+        }
     }
 }

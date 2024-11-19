@@ -48,6 +48,8 @@
             </svg>
         </span>
     </div>
+
+    @yield('script')
     <script>
         var hostUrl = "{{ asset('assets') }}/";
     </script>
@@ -61,6 +63,28 @@
     <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('assets/plugins/chart.js/chart.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function confirmDelete(id) {
+            // Menggunakan SweetAlert2 untuk konfirmasi
+            Swal.fire({
+                title: 'Anda yakin ingin menghapus?',
+                text: "Data ini tidak dapat dipulihkan setelah dihapus.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika konfirmasi 'Hapus' ditekan, submit form
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
 
 
 </body>

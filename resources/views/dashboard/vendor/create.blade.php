@@ -1,26 +1,38 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <div class="container-xxl" id="kt_content_container">
+    <div class="container-xxl">
         <div class="card">
-            <div class="card-header border-0 pt-6">
-                <h1 class="h3"><strong>Tambah Vendor</strong></h1>
+            <div class="card-header">
+                <h3>Tambah Vendor</h3>
             </div>
-            <div class="card-body pt-0">
+            <div class="card-body">
                 <form action="{{ route('vendor.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="nama_vendor" class="form-label">Nama Vendor</label>
-                        <input type="text" class="form-control" id="nama_vendor" name="nama_vendor" required>
+                        <input type="text" name="nama_vendor" class="form-control" placeholder="Masukkan nama vendor"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="badan_hukum" class="form-label">Badan Hukum</label>
-                        <input type="text" class="form-control" id="badan_hukum" name="badan_hukum" required>
+                        <select name="badan_hukum" class="form-control" required>
+                            <option value="P">PT</option>
+                            <option value="C">CV</option>
+                        </select>
                     </div>
-                    <input type="hidden" name="status" value="1">
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select name="status" class="form-control" required>
+                            <option value="A">Aktif</option>
+                            <option value="I">Tidak Aktif</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>
         </div>
     </div>
 @endsection
+
+@section('script')

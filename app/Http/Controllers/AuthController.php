@@ -16,26 +16,28 @@ class AuthController extends Controller
     }
 
     // Handle login
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => ['required', 'string'],
-            'password' => ['required', 'string'],
-        ]);
+   // Handle login
+public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'username' => ['required', 'string'],
+        'password' => ['required', 'string'],
+    ]);
 
-        // Mengambil user berdasarkan username
-        $user = User::where('username', $request->username)->first();
+    // Mengambil user berdasarkan username
+    $user = User::where('username', $request->username)->first();
 
-        // Verifikasi password dan login user
-        if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user);
-            return redirect()->intended('/'); // Mengarahkan ke halaman utama setelah login berhasil
-        }
-
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ]);
+    // Verifikasi password (tanpa Hash::check)
+    if ($user && $request->password === $user->password) { // Perbandingan langsung
+        Auth::login($user);
+        return redirect()->intended('/'); // Mengarahkan ke halaman utama setelah login berhasil
     }
+
+    return back()->withErrors([
+        'username' => 'The provided credentials do not match our records.',
+    ]);
+}
+
 
     // Show register form
     public function showRegister()

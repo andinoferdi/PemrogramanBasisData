@@ -1,29 +1,38 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <div class="container-xxl" id="kt_content_container">
+    <div class="container-xxl">
         <div class="card">
-            <div class="card-header border-0 pt-6">
-                <h1 class="h3"><strong>Edit Vendor</strong></h1>
+            <div class="card-header">
+                <h3>Edit Vendor</h3>
             </div>
-            <div class="card-body pt-0">
-                <form action="{{ route('vendor.update', $vendor->idvendor) }}" method="POST">
+            <div class="card-body">
+                <form action="{{ route('vendor.update', $vendor->vendor_id) }}" method="POST">
                     @csrf
-                    @method('PUT')
                     <div class="mb-3">
                         <label for="nama_vendor" class="form-label">Nama Vendor</label>
-                        <input type="text" class="form-control" id="nama_vendor" name="nama_vendor"
-                            value="{{ $vendor->nama_vendor }}" required>
+                        <input type="text" name="nama_vendor" class="form-control" value="{{ $vendor->nama_vendor }}"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="badan_hukum" class="form-label">Badan Hukum</label>
-                        <input type="text" class="form-control" id="badan_hukum" name="badan_hukum"
-                            value="{{ $vendor->badan_hukum }}" required>
+                        <select name="badan_hukum" class="form-control" required>
+                            <option value="P" {{ $vendor->badan_hukum == 'P' ? 'selected' : '' }}>PT</option>
+                            <option value="C" {{ $vendor->badan_hukum == 'C' ? 'selected' : '' }}>CV</option>
+                        </select>
                     </div>
-                    <input type="hidden" name="status" value="1">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select name="status" class="form-control" required>
+                            <option value="A" {{ $vendor->status == 'A' ? 'selected' : '' }}>Aktif</option>
+                            <option value="I" {{ $vendor->status == 'I' ? 'selected' : '' }}>Tidak Aktif</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>
             </div>
         </div>
     </div>
 @endsection
+
+@section('script')

@@ -16,7 +16,8 @@
                                          <span class="svg-icon svg-icon-1 svg-icon-gray-400 me-1">
                                          </span>
                                          <input type="text" class="form-control form-control-flush flex-grow-1"
-                                             name="search" autocomplete="off" value="{{ request('search') }}" placeholder="Your Search" />
+                                             name="search" autocomplete="off" value="{{ request('search') }}"
+                                             placeholder="Your Search" />
                                      </div>
                                  </div>
                                  <div class="min-w-150px text-end">
@@ -26,57 +27,9 @@
                              </div>
                          </form>
 
-                         @if (request('search'))
-                             <div class="mt-5 p-3 rounded bg-light">
-                                 <h3 class="text-dark mb-3">Search Results for '{{ request('search') }}':</h3>
 
-                                 <ul class="list-group">
-                                     @if ($barangResults->isNotEmpty())
-                                         <li class="list-group-item"><strong>Barang:</strong></li>
-                                         @foreach ($barangResults as $item)
-                                             <li class="list-group-item">{{ $item->nama_barang }}</li>
-                                         @endforeach
-                                     @endif
 
-                                     @if ($vendorResults->isNotEmpty())
-                                         <li class="list-group-item"><strong>Vendor:</strong></li>
-                                         @foreach ($vendorResults as $item)
-                                             <li class="list-group-item">{{ $item->nama_vendor }}</li>
-                                         @endforeach
-                                     @endif
 
-                                     @if ($roleResults->isNotEmpty())
-                                         <li class="list-group-item"><strong>Role:</strong></li>
-                                         @foreach ($roleResults as $item)
-                                             <li class="list-group-item">{{ $item->nama_role }}</li>
-                                         @endforeach
-                                     @endif
-
-                                     @if ($userResults->isNotEmpty())
-                                         <li class="list-group-item"><strong>User:</strong></li>
-                                         @foreach ($userResults as $item)
-                                             <li class="list-group-item">{{ $item->username }}</li>
-                                         @endforeach
-                                     @endif
-
-                                     @if ($satuanResults->isNotEmpty())
-                                         <li class="list-group-item"><strong>Satuan:</strong></li>
-                                         @foreach ($satuanResults as $item)
-                                             <li class="list-group-item">{{ $item->nama_satuan }}</li>
-                                         @endforeach
-                                     @endif
-
-                                     @if (
-                                         $barangResults->isEmpty() &&
-                                             $vendorResults->isEmpty() &&
-                                             $roleResults->isEmpty() &&
-                                             $userResults->isEmpty() &&
-                                             $satuanResults->isEmpty())
-                                         <li class="list-group-item text-dark">No results found.</li>
-                                     @endif
-                                 </ul>
-                             </div>
-                         @endif
 
                      </div>
                  </div>
@@ -99,24 +52,22 @@
                                  <div class="mixed-widget-5-chart card-rounded-top" id="trendsChart" style="height: 150px;">
                                  </div>
                                  <div class="mt-5">
-                                     @foreach ($topBarangs as $barang)
-                                         <div class="d-flex flex-stack mb-5">
-                                             <div class="d-flex align-items-center me-2">
-                                                 <div class="symbol symbol-50px me-3">
-                                                     <div class="symbol-label bg-light">
-                                                         <i class="fas fa-box-open fa-2x text-primary"></i>
-                                                     </div>
-                                                 </div>
-                                                 <div>
-                                                     <a href="#"
-                                                         class="fs-6 text-gray-800 text-hover-primary fw-bolder">{{ $barang->nama_barang }}</a>
-                                                     <div class="fs-7 text-muted fw-bold mt-1">Status: {{ $barang->status }}
-                                                     </div>
+                                     <div class="d-flex flex-stack mb-5">
+                                         <div class="d-flex align-items-center me-2">
+                                             <div class="symbol symbol-50px me-3">
+                                                 <div class="symbol-label bg-light">
+                                                     <i class="fas fa-box-open fa-2x text-primary"></i>
                                                  </div>
                                              </div>
-                                             <div class="badge badge-light fw-bold py-4 px-3">+82$</div>
+                                             <div>
+                                                 <a href="#"
+                                                     class="fs-6 text-gray-800 text-hover-primary fw-bolder"></a>
+                                                 <div class="fs-7 text-muted fw-bold mt-1">Status: </div>
+                                             </div>
                                          </div>
-                                     @endforeach
+                                         <div class="badge badge-light fw-bold py-4 px-3">+82$</div>
+                                     </div>
+
                                  </div>
                              </div>
                          </div>
@@ -127,7 +78,7 @@
                              <div class="card-header border-0 pt-5">
                                  <h3 class="card-title align-items-start flex-column">
                                      <span class="card-label fw-bolder fs-3 mb-1">User</span>
-                                     <span class="text-muted mt-1 fw-bold fs-7">Ada {{ $users->count() }} User</span>
+                                     <span class="text-muted mt-1 fw-bold fs-7">Ada 0 User</span>
                                  </h3>
                              </div>
                              <div class="card-body py-3">
@@ -147,45 +98,46 @@
                                              </tr>
                                          </thead>
                                          <tbody>
-                                             @foreach ($users as $user)
-                                                 <tr>
-                                                     <td>
-                                                         <div
-                                                             class="form-check form-check-sm form-check-custom form-check-solid">
-                                                             <input class="form-check-input widget-9-check" type="checkbox"
-                                                                 value="{{ $user->iduser }}" />
+                                             <tr>
+                                                 <td>
+                                                     <div
+                                                         class="form-check form-check-sm form-check-custom form-check-solid">
+                                                         <input class="form-check-input widget-9-check" type="checkbox"
+                                                             value="1" />
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="d-flex align-items-center">
+                                                         <div class="symbol symbol-45px me-5">
+                                                             <img src="{{ asset('assets/media/avatars/150-11.jpg') }}"
+                                                                 alt="" />
                                                          </div>
-                                                     </td>
-                                                     <td>
-                                                         <div class="d-flex align-items-center">
-                                                             <div class="symbol symbol-45px me-5">
-                                                                 <img src="{{ asset('assets/media/avatars/150-11.jpg') }}"
-                                                                     alt="" />
-                                                             </div>
-                                                             <div class="d-flex justify-content-start flex-column">
-                                                                 <a href="#"
-                                                                     class="text-dark fw-bolder text-hover-primary fs-6">{{ $user->username }}</a>
-                                                                 <span
-                                                                     class="text-muted fw-bold text-muted d-block fs-7">{{ $user->role->nama_role }}</span>
-                                                             </div>
+                                                         <div class="d-flex justify-content-start flex-column">
+                                                             <a href="#"
+                                                                 class="text-dark fw-bolder text-hover-primary fs-6">Username</a>
+                                                             <span class="text-muted fw-bold text-muted d-block fs-7">Role
+                                                                 Name</span>
                                                          </div>
-                                                     </td>
-                                                     <td>
-                                                         <a href="#"
-                                                             class="text-dark fw-bolder text-hover-primary d-block fs-6">{{ $user->role->nama_role }}</a>
-                                                         <span class="text-muted fw-bold text-muted d-block fs-7">User
-                                                             Role</span>
-                                                     </td>
-                                                     <td class="text-end">
-                                                     </td>
-                                                 </tr>
-                                             @endforeach
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <a href="#"
+                                                         class="text-dark fw-bolder text-hover-primary d-block fs-6">Role
+                                                         Name</a>
+                                                     <span class="text-muted fw-bold text-muted d-block fs-7">User
+                                                         Role</span>
+                                                 </td>
+                                                 <td class="text-end">
+                                                 </td>
+                                             </tr>
                                          </tbody>
                                      </table>
                                  </div>
                              </div>
                          </div>
                      </div>
+
+
 
                      <!--end::Col-->
                  </div>
@@ -1048,33 +1000,5 @@
              <!--end::Container-->
          </div>
      @endsection
-     @if (isset($topBarangs))
-         <script>
-             document.addEventListener('DOMContentLoaded', function() {
-                 var labels = @json($topBarangs->pluck('nama_barang'));
-                 var data = {
-                     labels: labels,
-                     datasets: [{
-                         label: 'Trends',
-                         data: [1, 2, 3],
-                         backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                         borderColor: 'rgba(255, 206, 86, 1)',
-                         borderWidth: 1
-                     }]
-                 };
 
-                 var ctx = document.getElementById('trendsChart').getContext('2d');
-                 var myChart = new Chart(ctx, {
-                     type: 'line',
-                     data: data,
-                     options: {
-                         scales: {
-                             y: {
-                                 beginAtZero: true
-                             }
-                         }
-                     }
-                 });
-             });
-         </script>
-     @endif
+     @section('script')

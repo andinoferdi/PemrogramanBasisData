@@ -14,12 +14,12 @@
                         <label for="nama_satuan" class="form-label">Nama Satuan</label>
                         <input type="text" name="nama_satuan" class="form-control" required>
                     </div>
-
-                    <input type="hidden" name="status" value="1">
-
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
+
             </div>
         </div>
     </div>
 @endsection
+
+@section('script')
