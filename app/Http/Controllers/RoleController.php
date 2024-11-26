@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -31,10 +32,11 @@ class RoleController extends Controller
         ]);
 
         try {
-            DB::select('CALL UpdateRole(?, ?)', [
-                $id,
-                $request->input('nama_role'),
-            ]);
+            DB::table('role')
+                ->where('role_id', $id)
+                ->update([
+                    'nama_role' => $request->input('nama_role'),
+                ]);
 
             return redirect()->route('role.index')->with('success', 'Role berhasil diperbarui!');
         } catch (\Exception $e) {
@@ -45,7 +47,7 @@ class RoleController extends Controller
     public function delete($id)
     {
         try {
-            DB::select('CALL DeleteRole(?)', [$id]);
+            DB::table('role')->where('role_id', $id)->delete();
 
             return redirect()->route('role.index')->with('success', 'Role berhasil dihapus!');
         } catch (\Exception $e) {

@@ -17,10 +17,10 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>
-
             </div>
         </div>
     </div>
 @endsection
 
 @section('script')
+@endsection

@@ -11,7 +11,7 @@ class VendorController extends Controller
     {
         $request->validate([
             'nama_vendor' => 'required|string|max:100',
-            'badan_hukum' => 'required|in:P,C', 
+            'badan_hukum' => 'required|in:P,C',
             'status' => 'required|in:A,I',
         ]);
 
@@ -37,12 +37,13 @@ class VendorController extends Controller
         ]);
 
         try {
-            DB::select('CALL UpdateVendor(?, ?, ?, ?)', [
-                $id,
-                $request->input('nama_vendor'),
-                $request->input('badan_hukum'),
-                $request->input('status'),
-            ]);
+            DB::table('vendor')
+                ->where('vendor_id', $id)
+                ->update([
+                    'nama_vendor' => $request->input('nama_vendor'),
+                    'badan_hukum' => $request->input('badan_hukum'),
+                    'status' => $request->input('status'),
+                ]);
 
             return redirect()->route('vendor.index')->with('success', 'Vendor berhasil diperbarui!');
         } catch (\Exception $e) {
@@ -50,10 +51,10 @@ class VendorController extends Controller
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         try {
-            DB::select('CALL DeleteVendor(?)', [$id]);
+            DB::table('vendor')->where('vendor_id', $id)->delete();
 
             return redirect()->route('vendor.index')->with('success', 'Vendor berhasil dihapus!');
         } catch (\Exception $e) {

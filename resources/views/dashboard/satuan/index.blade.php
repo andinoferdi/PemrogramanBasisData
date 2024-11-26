@@ -43,7 +43,6 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                     </form>
-
                                 </td>
                             </tr>
                         @endforeach
@@ -55,3 +54,4 @@
 @endsection
 
 @section('script')
+@endsection

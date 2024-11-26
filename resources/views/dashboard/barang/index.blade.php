@@ -12,8 +12,6 @@
                 </div>
             </div>
 
-            <div class="card-toolbar">
-            </div>
             <div class="card-body">
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">{{ $message }}</div>
@@ -34,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($barang as $item)
+                        @forelse ($barangs as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->jenis }}</td>
@@ -66,3 +64,4 @@
 @endsection
 
 @section('script')
+@endsection

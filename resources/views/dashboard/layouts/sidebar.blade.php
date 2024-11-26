@@ -23,6 +23,16 @@
             </div>
 
             <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('satuan.*') ? 'active' : '' }} menu-center"
+                    href="{{ route('satuan.index') }}" title="Satuan" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                    data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-rulers fs-2"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="menu-item py-3">
                 <a class="menu-link {{ request()->routeIs('barang.*') ? 'active' : '' }} menu-center"
                     href="{{ route('barang.index') }}" title="Barang" data-bs-toggle="tooltip" data-bs-trigger="hover"
                     data-bs-dismiss="click" data-bs-placement="right">
@@ -32,15 +42,6 @@
                 </a>
             </div>
 
-            <div class="menu-item py-3">
-                <a class="menu-link {{ request()->routeIs('satuan.*') ? 'active' : '' }} menu-center"
-                    href="{{ route('satuan.index') }}" title="Satuan" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                    data-bs-dismiss="click" data-bs-placement="right">
-                    <span class="menu-icon me-0">
-                        <i class="bi bi-rulers fs-2"></i>
-                    </span>
-                </a>
-            </div>
 
             <div class="menu-item py-3">
                 <a class="menu-link {{ request()->routeIs('vendor.*') ? 'active' : '' }} menu-center"

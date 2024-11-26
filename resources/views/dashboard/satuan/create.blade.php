@@ -16,10 +16,10 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
-
             </div>
         </div>
     </div>
 @endsection
 
 @section('script')
+@endsection

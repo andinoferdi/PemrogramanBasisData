@@ -48,3 +48,4 @@
 @endsection
 
 @section('script')
+@endsection

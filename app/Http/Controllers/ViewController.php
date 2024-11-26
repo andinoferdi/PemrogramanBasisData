@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\DB;
 
 class ViewController extends Controller
 {
+
     public function satuan()
     {
-        $satuan = DB::select('CALL SelectAllSatuan()');
+        $satuan = DB::table('satuan')->get();
         return view('dashboard.satuan.index', compact('satuan'));
     }
 
@@ -19,45 +20,46 @@ class ViewController extends Controller
 
     public function satuanEdit($id)
     {
-        $satuan = DB::select('SELECT * FROM satuan WHERE satuan_id = ?', [$id]);
+        $satuan = DB::table('satuan')->where('satuan_id', $id)->first();
 
-        if (empty($satuan)) {
+        if (!$satuan) {
             abort(404, 'Data satuan tidak ditemukan.');
         }
 
-        return view('dashboard.satuan.edit', ['satuan' => $satuan[0]]);
+        return view('dashboard.satuan.edit', compact('satuan'));
     }
 
     public function barang()
     {
-        $barang = DB::select('CALL SelectAllBarang()');
-        return view('dashboard.barang.index', compact('barang'));
+        $barangs = DB::table('barang')
+            ->join('satuan', 'barang.satuan_id', '=', 'satuan.satuan_id')
+            ->select('barang.*', 'satuan.nama_satuan')
+            ->get();
+
+        return view('dashboard.barang.index', compact('barangs'));
     }
 
     public function barangCreate()
     {
-        $satuan = DB::select('CALL SelectAllSatuan()');
+        $satuan = DB::table('satuan')->get();
         return view('dashboard.barang.create', compact('satuan'));
     }
 
     public function barangEdit($id)
     {
-        $barang = DB::select('SELECT * FROM barang WHERE barang_id = ?', [$id]);
-        $satuan = DB::select('CALL SelectAllSatuan()');
+        $barang = DB::table('barang')->where('barang_id', $id)->first();
+        $satuan = DB::table('satuan')->get();
 
-        if (empty($barang)) {
-            abort(404, 'Data barang tidak ditemukan.');
+        if (!$barang) {
+            abort(404, 'Barang tidak ditemukan.');
         }
 
-        return view('dashboard.barang.edit', [
-            'barang' => $barang[0],
-            'satuan' => $satuan,
-        ]);
+        return view('dashboard.barang.edit', compact('barang', 'satuan'));
     }
 
     public function vendor()
     {
-        $vendor = DB::select('CALL SelectAllVendors()');
+        $vendor = DB::table('vendor')->get();
         return view('dashboard.vendor.index', compact('vendor'));
     }
 
@@ -68,18 +70,18 @@ class ViewController extends Controller
 
     public function vendorEdit($id)
     {
-        $vendor = DB::select('SELECT * FROM vendor WHERE vendor_id = ?', [$id]);
+        $vendor = DB::table('vendor')->where('vendor_id', $id)->first();
 
-        if (empty($vendor)) {
-            abort(404, 'Vendor tidak ditemukan.');
+        if (!$vendor) {
+            abort(404, 'Data vendor tidak ditemukan.');
         }
 
-        return view('dashboard.vendor.edit', ['vendor' => $vendor[0]]);
+        return view('dashboard.vendor.edit', compact('vendor'));
     }
 
     public function role()
     {
-        $roles = DB::select('CALL SelectAllRole()');
+        $roles = DB::table('role')->get();
         return view('dashboard.role.index', compact('roles'));
     }
 
@@ -90,39 +92,40 @@ class ViewController extends Controller
 
     public function roleEdit($id)
     {
-        $role = DB::select('SELECT * FROM role WHERE role_id = ?', [$id]);
+        $role = DB::table('role')->where('role_id', $id)->first();
 
-        if (empty($role)) {
+        if (!$role) {
             abort(404, 'Role tidak ditemukan.');
         }
 
-        return view('dashboard.role.edit', ['role' => $role[0]]);
+        return view('dashboard.role.edit', compact('role'));
     }
 
     public function user()
     {
-        $users = DB::select('CALL SelectAllUsers()');
+        $users = DB::table('user')
+            ->join('role', 'user.role_id', '=', 'role.role_id')
+            ->select('user.*', 'role.nama_role')
+            ->get();
+
         return view('dashboard.user.index', compact('users'));
     }
 
     public function userCreate()
     {
-        $roles = DB::select('CALL SelectAllRole()');
+        $roles = DB::table('role')->get();
         return view('dashboard.user.create', compact('roles'));
     }
 
     public function userEdit($id)
     {
-        $user = DB::select('SELECT * FROM user WHERE user_id = ?', [$id]);
-        $roles = DB::select('CALL SelectAllRole()');
+        $user = DB::table('user')->where('user_id', $id)->first();
+        $roles = DB::table('role')->get();
 
-        if (empty($user)) {
+        if (!$user) {
             abort(404, 'User tidak ditemukan.');
         }
 
-        return view('dashboard.user.edit', [
-            'user' => $user[0],
-            'roles' => $roles,
-        ]);
+        return view('dashboard.user.edit', compact('user', 'roles'));
     }
 }

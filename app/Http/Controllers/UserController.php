@@ -40,12 +40,13 @@ class UserController extends Controller
         try {
             $hashedPassword = $request->input('password') ? bcrypt($request->input('password')) : null;
 
-            DB::select('CALL UpdateUser(?, ?, ?, ?)', [
-                $id,
-                $request->input('username'),
-                $hashedPassword ?? DB::table('user')->where('user_id', $id)->value('password'),
-                $request->input('role_id'),
-            ]);
+            DB::table('user')
+                ->where('user_id', $id)
+                ->update([
+                    'username' => $request->input('username'),
+                    'password' => $hashedPassword ?? DB::table('user')->where('user_id', $id)->value('password'),
+                    'role_id' => $request->input('role_id'),
+                ]);
 
             return redirect()->route('user.index')->with('success', 'User berhasil diperbarui!');
         } catch (\Exception $e) {
@@ -56,7 +57,7 @@ class UserController extends Controller
     public function delete($id)
     {
         try {
-            DB::select('CALL DeleteUser(?)', [$id]);
+            DB::table('user')->where('user_id', $id)->delete();
 
             return redirect()->route('user.index')->with('success', 'User berhasil dihapus!');
         } catch (\Exception $e) {
