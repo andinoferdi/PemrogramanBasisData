@@ -67,7 +67,6 @@
 
     <script>
         function confirmDelete(id) {
-            // Menggunakan SweetAlert2 untuk konfirmasi
             Swal.fire({
                 title: 'Anda yakin ingin menghapus?',
                 text: "Data ini tidak dapat dipulihkan setelah dihapus.",
@@ -79,14 +78,22 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Jika konfirmasi 'Hapus' ditekan, submit form
                     document.getElementById('delete-form-' + id).submit();
                 }
             });
         }
     </script>
+    <script>
+        Number.prototype.rupiah = function() {
+            var str = this.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return str;
+        }
 
-
+        String.prototype.rupiah = function() {
+            var str = this.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return str;
+        }
+    </script>
 </body>
 
 </html>

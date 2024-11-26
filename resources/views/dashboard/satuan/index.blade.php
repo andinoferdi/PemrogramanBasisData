@@ -19,7 +19,7 @@
                     </div>
                 @endif
 
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_satuan">
+                <table class="table table-bordered">
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th>No</th>
@@ -29,15 +29,15 @@
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
-                        @foreach ($satuan as $item)
+                        @foreach ($satuan as $satuan)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama_satuan }}</td>
-                                <td>{{ $item->status ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                <td>{{ $satuan->nama_satuan }}</td>
+                                <td>{{ $satuan->status ? 'Aktif' : 'Tidak Aktif' }}</td>
                                 <td>
-                                    <a href="{{ route('satuan.edit', $item->satuan_id) }}"
+                                    <a href="{{ route('satuan.edit', $satuan->satuan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('satuan.delete', $item->satuan_id) }}" method="POST"
+                                    <form action="{{ route('satuan.delete', $satuan->satuan_id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')

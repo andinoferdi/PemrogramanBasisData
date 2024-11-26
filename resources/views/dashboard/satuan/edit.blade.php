@@ -15,6 +15,13 @@
                         <input type="text" name="nama_satuan" class="form-control" value="{{ $satuan->nama_satuan }}"
                             required>
                     </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select name="status" class="form-control" required>
+                            <option value="1" {{ $satuan->status == '1' ? 'selected' : '' }}>Aktif</option>
+                            <option value="0" {{ $satuan->status == '0' ? 'selected' : '' }}>Tidak Aktif</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>
             </div>

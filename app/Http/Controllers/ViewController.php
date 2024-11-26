@@ -128,4 +128,34 @@ class ViewController extends Controller
 
         return view('dashboard.user.edit', compact('user', 'roles'));
     }
+
+    public function pengadaan()
+    {
+        $pengadaan = DB::table('pengadaan')
+            ->join('vendor', 'pengadaan.vendor_id', '=', 'vendor.vendor_id')
+            ->select('pengadaan.*', 'vendor.nama_vendor')
+            ->get();
+
+        return view('dashboard.pengadaan.index', compact('pengadaan'));
+    }
+
+    public function pengadaanCreate()
+    {
+        $users = DB::table('user')->get();
+        $vendor = DB::table('vendor')->get();
+        return view('dashboard.pengadaan.create', compact('users', 'vendor'));
+    }
+
+    public function pengadaanEdit($id)
+    {
+        $pengadaan = DB::table('pengadaan')->where('pengadaan_id', $id)->first();
+        $users = DB::table('user')->get();
+        $vendor = DB::table('vendor')->get();
+
+        if (!$pengadaan) {
+            abort(404, 'Data pengadaan tidak ditemukan.');
+        }
+
+        return view('dashboard.pengadaan.edit', compact('pengadaan', 'users', 'vendor'));
+    }
 }

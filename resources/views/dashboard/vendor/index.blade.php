@@ -29,17 +29,17 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @forelse ($vendor as $item)
+                    <tbody class="fw-semibold text-gray-600">
+                        @forelse ($vendor as $vendor)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama_vendor }}</td>
-                                <td>{{ $item->badan_hukum == 'P' ? 'PT' : 'CV' }}</td>
-                                <td>{{ $item->status == 'A' ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                <td>{{ $vendor->nama_vendor }}</td>
+                                <td>{{ $vendor->badan_hukum == 'P' ? 'PT' : 'CV' }}</td>
+                                <td>{{ $vendor->status == 'A' ? 'Aktif' : 'Tidak Aktif' }}</td>
                                 <td>
-                                    <a href="{{ route('vendor.edit', $item->vendor_id) }}"
+                                    <a href="{{ route('vendor.edit', $vendor->vendor_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('vendor.delete', $item->vendor_id) }}" method="POST"
+                                    <form action="{{ route('vendor.delete', $vendor->vendor_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

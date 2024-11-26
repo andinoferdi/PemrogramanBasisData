@@ -14,6 +14,13 @@
                         <label for="nama_satuan" class="form-label">Nama Satuan</label>
                         <input type="text" name="nama_satuan" class="form-control" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select name="status" class="form-control" required>
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>

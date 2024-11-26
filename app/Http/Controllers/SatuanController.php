@@ -11,6 +11,7 @@ class SatuanController extends Controller
     {
         $request->validate([
             'nama_satuan' => 'required|string|max:255',
+            'status' => 'required',
         ]);
 
         DB::select('CALL InsertSatuan(?)', [
@@ -24,12 +25,15 @@ class SatuanController extends Controller
     {
         $request->validate([
             'nama_satuan' => 'required|string|max:255',
+            'status' => 'required',
         ]);
 
         DB::table('satuan')
             ->where('satuan_id', $id)
             ->update([
                 'nama_satuan' => $request->input('nama_satuan'),
+                'status' => $request->input('status'),
+                
             ]);
 
         return redirect()->route('satuan.index')->with('success', 'Satuan berhasil diperbarui!');

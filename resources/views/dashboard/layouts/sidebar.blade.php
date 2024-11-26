@@ -73,6 +73,17 @@
                 </a>
             </div>
 
+            <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('pengadaan.*') ? 'active' : '' }} menu-center"
+                    href="{{ route('pengadaan.index') }}" title="Pengadaan" data-bs-toggle="tooltip"
+                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-cart fs-2"></i>
+                    </span>
+                </a>
+            </div>
+
+
         </div>
     </div>
 </div>

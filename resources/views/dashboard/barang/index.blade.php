@@ -21,7 +21,7 @@
 
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
+                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th>No</th>
                             <th>Jenis</th>
                             <th>Nama Barang</th>
@@ -31,19 +31,19 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @forelse ($barangs as $item)
+                    <tbody class="fw-semibold text-gray-600">
+                        @forelse ($barangs as $barang)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->jenis }}</td>
-                                <td>{{ $item->nama_barang }}</td>
-                                <td>{{ $item->nama_satuan }}</td>
-                                <td>{{ $item->status ? 'Aktif' : 'Tidak Aktif' }}</td>
-                                <td>{{ number_format($item->harga, 0, ',', '.') }}</td>
+                                <td>{{ $barang->jenis }}</td>
+                                <td>{{ $barang->nama_barang }}</td>
+                                <td>{{ $barang->nama_satuan }}</td>
+                                <td>{{ $barang->status ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                <td>{{ number_format($barang->harga, 0, ',', '.') }}</td>
                                 <td>
-                                    <a href="{{ route('barang.edit', $item->barang_id) }}"
+                                    <a href="{{ route('barang.edit', $barang->barang_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('barang.delete', $item->barang_id) }}" method="POST"
+                                    <form action="{{ route('barang.delete', $barang->barang_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

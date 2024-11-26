@@ -21,13 +21,13 @@
 
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
+                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th>No</th>
                             <th>Nama Role</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="fw-semibold text-gray-600">
                         @forelse ($roles as $role)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>

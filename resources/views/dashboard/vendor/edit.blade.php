@@ -24,8 +24,8 @@
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" class="form-control" required>
-                            <option value="A" {{ $vendor->status == 'A' ? 'selected' : '' }}>Aktif</option>
-                            <option value="I" {{ $vendor->status == 'I' ? 'selected' : '' }}>Tidak Aktif</option>
+                            <option value="1" {{ $vendor->status == '1' ? 'selected' : '' }}>Aktif</option>
+                            <option value="0" {{ $vendor->status == '0' ? 'selected' : '' }}>Tidak Aktif</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Perbarui</button>

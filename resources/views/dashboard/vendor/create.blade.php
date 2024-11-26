@@ -24,8 +24,8 @@
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" class="form-control" required>
-                            <option value="A">Aktif</option>
-                            <option value="I">Tidak Aktif</option>
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>

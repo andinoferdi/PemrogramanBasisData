@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\PengadaanController;
 
 
 
@@ -63,4 +64,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/{id}/edit', [ViewController::class, 'userEdit'])->name('user.edit');
     Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
+
+    Route::get('/pengadaan', [ViewController::class, 'pengadaan'])->name('pengadaan.index');
+    Route::get('/pengadaan/create', [ViewController::class, 'pengadaanCreate'])->name('pengadaan.create');
+    Route::post('/pengadaan', [PengadaanController::class, 'store'])->name('pengadaan.store');
+    Route::get('/pengadaan/{id}/edit', [ViewController::class, 'pengadaanEdit'])->name('pengadaan.edit');
+    Route::post('/pengadaan/{id}', [PengadaanController::class, 'update'])->name('pengadaan.update');
+    Route::delete('/pengadaan/{id}', [PengadaanController::class, 'delete'])->name('pengadaan.delete');
 });
