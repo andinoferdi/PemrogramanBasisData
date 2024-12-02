@@ -38,7 +38,11 @@
                                 <td>{{ $barang->jenis }}</td>
                                 <td>{{ $barang->nama_barang }}</td>
                                 <td>{{ $barang->nama_satuan }}</td>
-                                <td>{{ $barang->status ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                <td>
+                                    <span class="{{ $barang->status == 1 ? 'text-success' : 'text-danger' }}">
+                                        {{ $barang->status == 1 ? 'Aktif' : 'Tidak Aktif' }}
+                                    </span>
+                                </td>
                                 <td>{{ number_format($barang->harga, 0, ',', '.') }}</td>
                                 <td>
                                     <a href="{{ route('barang.edit', $barang->barang_id) }}"

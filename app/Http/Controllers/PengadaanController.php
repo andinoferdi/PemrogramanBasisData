@@ -32,6 +32,7 @@ class PengadaanController extends Controller
 
 public function update(Request $request, $id)
 {
+    
     $request->validate([
         'user_id' => 'required|integer',
         'vendor_id' => 'required|integer',
@@ -39,20 +40,25 @@ public function update(Request $request, $id)
         'ppn' => 'required|numeric|min:0|max:100', 
     ]);
 
-    $total_nilai = $request->subtotal_nilai * (1 + $request->ppn / 100);
+    $data = [
+        'user_id' => $request->user_id,
+        'vendor_id' => $request->vendor_id,
+        'subtotal_nilai' => $request->subtotal_nilai,
+        'ppn' => $request->ppn,
+        'total_nilai' => $request->subtotal_nilai * (1 + $request->ppn / 100),
+    ];
+
+    if (auth()->user()->role_id == '1') {
+        $data['status'] = $request->status;
+    }
 
     DB::table('pengadaan')
         ->where('pengadaan_id', $id)
-        ->update([
-            'user_id' => $request->user_id,
-            'vendor_id' => $request->vendor_id,
-            'subtotal_nilai' => $request->subtotal_nilai,
-            'ppn' => $request->ppn, 
-            'total_nilai' => $total_nilai, 
-        ]);
+        ->update($data);
 
     return redirect()->route('pengadaan.index')->with('success', 'Pengadaan berhasil diperbarui!');
 }
+
 
     public function delete($id)
     {

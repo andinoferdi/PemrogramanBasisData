@@ -4,15 +4,15 @@
     <div class="container-xxl" id="kt_content_container">
         <div class="card">
             <div class="card-header border-0 pt-6">
-                <h1 class="h3"><strong>Tambah</strong> Pengadaan</h1>
+                <h1 class="h3"><strong>Tambah</strong> Penjualan</h1>
             </div>
 
             <div class="card-body pt-0">
-                <form action="{{ route('pengadaan.store') }}" method="POST">
+                <form action="{{ route('penjualan.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="user_id" class="form-label">User</label>
-                        <select name="user_id" class="form-select @error('user_id') is-invalid @enderror" required>
+                        <select name="user_id" class="form-select" required>
                             @foreach ($users as $user)
                                 <option value="{{ $user->user_id }}">{{ $user->username }}</option>
                             @endforeach
@@ -23,21 +23,22 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="vendor_id" class="form-label">Vendor</label>
-                        <select name="vendor_id" class="form-select @error('vendor_id') is-invalid @enderror" required>
-                            @foreach ($vendor as $v)
-                                <option value="{{ $v->vendor_id }}">{{ $v->nama_vendor }}</option>
+                        <label for="margin_penjualan_id" class="form-label">Margin Penjualan</label>
+                        <select name="margin_penjualan_id" class="form-select" required>
+                            @foreach ($margin_penjualan as $margin)
+                                @if ($margin->status == 1)
+                                    <option value="{{ $margin->margin_penjualan_id }}">{{ $margin->persen }}%</option>
+                                @endif
                             @endforeach
                         </select>
-                        @error('vendor_id')
+                        @error('margin_penjualan_id')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="subtotal_nilai" class="form-label">Subtotal Nilai</label>
-                        <input type="number" name="subtotal_nilai"
-                            class="form-control @error('subtotal_nilai') is-invalid @enderror" autocomplete="off" required>
+                        <input type="number" name="subtotal_nilai" class="form-control" required autocomplete="off">
                         @error('subtotal_nilai')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -45,8 +46,7 @@
 
                     <div class="mb-3">
                         <label for="ppn" class="form-label">PPN (%)</label>
-                        <input type="number" name="ppn" class="form-control @error('ppn') is-invalid @enderror"
-                            placeholder="Masukkan persentase PPN (contoh: 10)" autocomplete="off" required>
+                        <input type="number" name="ppn" class="form-control" required autocomplete="off">
                         @error('ppn')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

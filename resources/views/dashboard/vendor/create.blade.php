@@ -12,7 +12,10 @@
                     <div class="mb-3">
                         <label for="nama_vendor" class="form-label">Nama Vendor</label>
                         <input type="text" name="nama_vendor" class="form-control" placeholder="Masukkan nama vendor"
-                            required>
+                            required autocomplete="off">
+                        @error('nama_vendor')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="badan_hukum" class="form-label">Badan Hukum</label>
@@ -20,6 +23,9 @@
                             <option value="P">PT</option>
                             <option value="C">CV</option>
                         </select>
+                        @error('badan_hukum')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
@@ -27,6 +33,9 @@
                             <option value="1">Aktif</option>
                             <option value="0">Tidak Aktif</option>
                         </select>
+                        @error('status')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
@@ -36,3 +45,4 @@
 @endsection
 
 @section('script')
+@endsection

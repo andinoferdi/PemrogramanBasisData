@@ -5,10 +5,10 @@
         <div class="card">
             <div class="card-header border-0 pt-6">
                 <div class="card-title">
-                    <h1 class="h3"><strong>Master</strong> Satuan</h1>
+                    <h1 class="h3"><strong>Master</strong> Margin Penjualan</h1>
                 </div>
                 <div class="card-toolbar">
-                    <a href="{{ route('satuan.create') }}" class="btn btn-primary">Tambah Satuan</a>
+                    <a href="{{ route('margin_penjualan.create') }}" class="btn btn-primary">Tambah Margin Penjualan</a>
                 </div>
             </div>
 
@@ -23,26 +23,29 @@
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th>No</th>
-                            <th>Nama Satuan</th>
+                            <th>Persen</th>
                             <th>Status</th>
+                            <th>User</th>
                             <th class="min-w-100px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
-                        @foreach ($satuan as $satuan)
+                        @foreach ($marginPenjualan as $margin)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $satuan->nama_satuan }}</td>
+                                <td>{{ $margin->persen }}%</td>
                                 <td>
-                                    <span class="{{ $satuan->status == 1 ? 'text-success' : 'text-danger' }}">
-                                        {{ $satuan->status == 1 ? 'Aktif' : 'Tidak Aktif' }}
+                                    <span class="{{ $margin->status == 1 ? 'text-success' : 'text-danger' }}">
+                                        {{ $margin->status == 1 ? 'Aktif' : 'Tidak Aktif' }}
                                     </span>
                                 </td>
+
+                                <td>{{ $margin->username }}</td>
                                 <td>
-                                    <a href="{{ route('satuan.edit', $satuan->satuan_id) }}"
+                                    <a href="{{ route('margin_penjualan.edit', $margin->margin_penjualan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('satuan.delete', $satuan->satuan_id) }}" method="POST"
-                                        style="display:inline-block;">
+                                    <form action="{{ route('margin_penjualan.delete', $margin->margin_penjualan_id) }}"
+                                        method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -55,7 +58,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
 @endsection

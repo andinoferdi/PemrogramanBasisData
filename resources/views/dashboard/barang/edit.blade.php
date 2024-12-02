@@ -11,16 +11,24 @@
                     @csrf
                     <div class="mb-3">
                         <label for="jenis" class="form-label">Jenis</label>
-                        <input type="text" name="jenis" class="form-control" value="{{ $barang->jenis }}" required>
+                        <input type="text" name="jenis" class="form-control @error('jenis') is-invalid @enderror"
+                            value="{{ $barang->jenis }}" autocomplete="off" required>
+                        @error('jenis')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nama_barang" class="form-label">Nama Barang</label>
-                        <input type="text" name="nama_barang" class="form-control" value="{{ $barang->nama_barang }}"
-                            required>
+                        <input type="text" name="nama_barang"
+                            class="form-control @error('nama_barang') is-invalid @enderror"
+                            value="{{ $barang->nama_barang }}" autocomplete="off" required>
+                        @error('nama_barang')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="satuan_id" class="form-label">Satuan</label>
-                        <select name="satuan_id" class="form-control" required>
+                        <select name="satuan_id" class="form-control @error('satuan_id') is-invalid @enderror" required>
                             @foreach ($satuan as $item)
                                 <option value="{{ $item->satuan_id }}"
                                     {{ $item->satuan_id == $barang->satuan_id ? 'selected' : '' }}>
@@ -28,17 +36,27 @@
                                 </option>
                             @endforeach
                         </select>
+                        @error('satuan_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
-                        <select name="status" class="form-control" required>
+                        <select name="status" class="form-control @error('status') is-invalid @enderror" required>
                             <option value="1" {{ $barang->status ? 'selected' : '' }}>Aktif</option>
                             <option value="0" {{ !$barang->status ? 'selected' : '' }}>Tidak Aktif</option>
                         </select>
+                        @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
-                        <input type="number" name="harga" class="form-control" value="{{ $barang->harga }}" required>
+                        <input type="number" name="harga" class="form-control @error('harga') is-invalid @enderror"
+                            value="{{ $barang->harga }}" autocomplete="off" required>
+                        @error('harga')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>

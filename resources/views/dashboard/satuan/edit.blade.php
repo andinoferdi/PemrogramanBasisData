@@ -10,10 +10,14 @@
             <div class="card-body pt-0">
                 <form action="{{ route('satuan.update', $satuan->satuan_id) }}" method="POST">
                     @csrf
+                    @method('POST')
                     <div class="mb-3">
                         <label for="nama_satuan" class="form-label">Nama Satuan</label>
                         <input type="text" name="nama_satuan" class="form-control" value="{{ $satuan->nama_satuan }}"
-                            required>
+                            required autocomplete="off">
+                        @error('nama_satuan')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
@@ -21,6 +25,9 @@
                             <option value="1" {{ $satuan->status == '1' ? 'selected' : '' }}>Aktif</option>
                             <option value="0" {{ $satuan->status == '0' ? 'selected' : '' }}>Tidak Aktif</option>
                         </select>
+                        @error('status')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>

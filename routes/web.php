@@ -10,6 +10,8 @@ use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\PengadaanController;
+use App\Http\Controllers\MarginPenjualanController;
+use App\Http\Controllers\PenjualanController;
 
 
 
@@ -71,4 +73,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pengadaan/{id}/edit', [ViewController::class, 'pengadaanEdit'])->name('pengadaan.edit');
     Route::post('/pengadaan/{id}', [PengadaanController::class, 'update'])->name('pengadaan.update');
     Route::delete('/pengadaan/{id}', [PengadaanController::class, 'delete'])->name('pengadaan.delete');
+
+    Route::get('/margin-penjualan', [ViewController::class, 'marginPenjualan'])->name('margin_penjualan.index');
+Route::get('/margin-penjualan/create', [ViewController::class, 'marginPenjualanCreate'])->name('margin_penjualan.create');
+Route::post('/margin-penjualan', [MarginPenjualanController::class, 'store'])->name('margin_penjualan.store');
+Route::get('/margin-penjualan/{id}/edit', [ViewController::class, 'marginPenjualanEdit'])->name('margin_penjualan.edit');
+Route::post('/margin-penjualan/{id}', [MarginPenjualanController::class, 'update'])->name('margin_penjualan.update');
+Route::delete('/margin-penjualan/{id}', [MarginPenjualanController::class, 'delete'])->name('margin_penjualan.delete');
+
+ Route::get('/penjualan', [ViewController::class, 'penjualan'])->name('penjualan.index');
+    Route::get('/penjualan/create', [ViewController::class, 'penjualanCreate'])->name('penjualan.create');
+    Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
+    Route::get('/penjualan/{id}/edit', [ViewController::class, 'penjualanEdit'])->name('penjualan.edit');
+    Route::post('/penjualan/{id}', [PenjualanController::class, 'update'])->name('penjualan.update');
+    Route::delete('/penjualan/{id}', [PenjualanController::class, 'delete'])->name('penjualan.delete');
 });

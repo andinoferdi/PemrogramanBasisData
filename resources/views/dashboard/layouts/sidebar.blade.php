@@ -83,6 +83,28 @@
                 </a>
             </div>
 
+            <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('margin_penjualan.*') ? 'active' : '' }} menu-center"
+                    href="{{ route('margin_penjualan.index') }}" title="Margin Penjualan" data-bs-toggle="tooltip"
+                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-percent fs-2"></i>
+                    </span>
+                </a>
+            </div>
+
+
+            <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('penjualan.*') ? 'active' : '' }} menu-center"
+                    href="{{ route('penjualan.index') }}" title="Penjualan" data-bs-toggle="tooltip"
+                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-shop fs-2"></i>
+                    </span>
+                </a>
+            </div>
+
+
 
         </div>
     </div>

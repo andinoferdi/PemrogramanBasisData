@@ -9,14 +9,22 @@
             <div class="card-body">
                 <form action="{{ route('user.update', $user->user_id) }}" method="POST">
                     @csrf
+                    @method('POST')
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" value="{{ $user->username }}" required>
+                        <input type="text" name="username" class="form-control" value="{{ $user->username }}" required
+                            autocomplete="off">
+                        @error('username')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" name="password" class="form-control"
-                            placeholder="Biarkan kosong jika tidak ingin mengganti password">
+                            placeholder="Biarkan kosong jika tidak ingin mengganti password" autocomplete="off">
+                        @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="role_id" class="form-label">Role</label>
@@ -28,6 +36,9 @@
                                 </option>
                             @endforeach
                         </select>
+                        @error('role_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>
@@ -37,3 +48,4 @@
 @endsection
 
 @section('script')
+@endsection

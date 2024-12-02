@@ -9,14 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Show login form
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    // Handle login
-   // Handle login
 public function login(Request $request)
 {
     $credentials = $request->validate([
@@ -24,13 +21,18 @@ public function login(Request $request)
         'password' => ['required', 'string'],
     ]);
 
-    // Mengambil user berdasarkan username
     $user = User::where('username', $request->username)->first();
 
-    // Verifikasi password (tanpa Hash::check)
-    if ($user && $request->password === $user->password) { // Perbandingan langsung
-        Auth::login($user);
-        return redirect()->intended('/'); // Mengarahkan ke halaman utama setelah login berhasil
+    if ($user) {
+        if (strlen($user->password) == 60 && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
+            return redirect()->intended('/');
+        }
+
+        if ($request->password === $user->password) {
+            Auth::login($user);
+            return redirect()->intended('/');
+        }
     }
 
     return back()->withErrors([
@@ -39,13 +41,11 @@ public function login(Request $request)
 }
 
 
-    // Show register form
     public function showRegister()
     {
         return view('auth.register');
     }
 
-    // Handle registration
     public function register(Request $request)
     {
         $request->validate([
@@ -55,8 +55,8 @@ public function login(Request $request)
 
         $user = User::create([
             'username' => $request->username,
-            'password' => bcrypt($request->password), // Hash the password
-            'role_id' => 2 // Set a default role for the new user, if needed
+            'password' => bcrypt($request->password), 
+            'role_id' => 2 
         ]);
 
         Auth::login($user);
@@ -64,7 +64,6 @@ public function login(Request $request)
         return redirect()->route('login')->with('success', 'Registration successful. You can now log in.');
     }
 
-    // Handle logout
     public function logout(Request $request)
     {
         Auth::logout();

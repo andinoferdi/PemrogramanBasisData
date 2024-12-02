@@ -11,8 +11,11 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama_role" class="form-label">Nama Role</label>
-                        <input type="text" name="nama_role" class="form-control" placeholder="Masukkan nama role"
-                            required>
+                        <input type="text" name="nama_role" class="form-control" placeholder="Masukkan nama role" required
+                            autocomplete="off">
+                        @error('nama_role')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
@@ -22,3 +25,4 @@
 @endsection
 
 @section('script')
+@endsection

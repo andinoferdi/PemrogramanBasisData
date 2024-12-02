@@ -158,4 +158,64 @@ class ViewController extends Controller
 
         return view('dashboard.pengadaan.edit', compact('pengadaan', 'users', 'vendor'));
     }
+
+   public function marginPenjualan()
+    {
+        $marginPenjualan = DB::table('margin_penjualan')
+            ->join('user', 'margin_penjualan.user_id', '=', 'user.user_id')
+            ->select('margin_penjualan.*', 'user.username')
+            ->get();
+
+        return view('dashboard.margin_penjualan.index', compact('marginPenjualan'));
+    }
+
+    public function marginPenjualanCreate()
+    {
+        $users = DB::table('user')->get();
+        return view('dashboard.margin_penjualan.create', compact('users'));
+    }
+
+    public function marginPenjualanEdit($id)
+    {
+        $marginPenjualan = DB::table('margin_penjualan')->where('margin_penjualan_id', $id)->first();
+        $users = DB::table('user')->get();
+
+        if (!$marginPenjualan) {
+            abort(404, 'Data margin penjualan tidak ditemukan.');
+        }
+
+        return view('dashboard.margin_penjualan.edit', compact('marginPenjualan', 'users'));
+    }
+
+    public function penjualan()
+    {
+        $penjualan = DB::table('penjualan')
+            ->join('user', 'penjualan.user_id', '=', 'user.user_id')
+            ->join('margin_penjualan', 'penjualan.margin_penjualan_id', '=', 'margin_penjualan.margin_penjualan_id')
+            ->select('penjualan.*', 'user.username', 'margin_penjualan.persen')
+            ->get();
+
+        return view('dashboard.penjualan.index', compact('penjualan'));
+    }
+
+    public function penjualanCreate()
+    {
+        $users = DB::table('user')->get();
+        $margin_penjualan = DB::table('margin_penjualan')->get();
+        return view('dashboard.penjualan.create', compact('users', 'margin_penjualan'));
+    }
+
+    public function penjualanEdit($id)
+    {
+        $penjualan = DB::table('penjualan')->where('penjualan_id', $id)->first();
+        $users = DB::table('user')->get();
+        $margin_penjualan = DB::table('margin_penjualan')->get();
+
+        if (!$penjualan) {
+            abort(404, 'Data penjualan tidak ditemukan.');
+        }
+
+        return view('dashboard.penjualan.edit', compact('penjualan', 'users', 'margin_penjualan'));
+    }
+    
 }

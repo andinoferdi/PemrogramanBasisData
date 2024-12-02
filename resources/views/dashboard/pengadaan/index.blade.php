@@ -34,7 +34,9 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $pengadaan->nama_vendor }}</td>
-                                <td>{{ $pengadaan->status == 0 ? 'Pending' : 'Sukses' }}</td>
+                                <td class="{{ $pengadaan->status == 0 ? 'text-danger' : 'text-success' }}">
+                                    {{ $pengadaan->status == 0 ? 'Pending' : 'Sukses' }}
+                                </td>
                                 <td>{{ number_format($pengadaan->total_nilai, 0, ',', '.') }}</td>
                                 <td>
                                     <a href="{{ route('pengadaan.edit', $pengadaan->pengadaan_id) }}"

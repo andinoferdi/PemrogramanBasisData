@@ -9,9 +9,14 @@
             <div class="card-body">
                 <form action="{{ route('role.update', $role->role_id) }}" method="POST">
                     @csrf
+                    @method('POST')
                     <div class="mb-3">
                         <label for="nama_role" class="form-label">Nama Role</label>
-                        <input type="text" name="nama_role" class="form-control" value="{{ $role->nama_role }}" required>
+                        <input type="text" name="nama_role" class="form-control" value="{{ $role->nama_role }}" required
+                            autocomplete="off">
+                        @error('nama_role')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>
@@ -21,3 +26,4 @@
 @endsection
 
 @section('script')
+@endsection

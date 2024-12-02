@@ -35,7 +35,12 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $vendor->nama_vendor }}</td>
                                 <td>{{ $vendor->badan_hukum == 'P' ? 'PT' : 'CV' }}</td>
-                                <td>{{ $vendor->status == 'A' ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                <td>
+                                    <span class="{{ $vendor->status == 1 ? 'text-success' : 'text-danger' }}">
+                                        {{ $vendor->status == 1 ? 'Aktif' : 'Tidak Aktif' }}
+                                    </span>
+                                </td>
+
                                 <td>
                                     <a href="{{ route('vendor.edit', $vendor->vendor_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
