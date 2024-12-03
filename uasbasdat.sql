@@ -37,8 +37,8 @@ CREATE TABLE `barang`  (
 -- ----------------------------
 -- Records of barang
 -- ----------------------------
-INSERT INTO `barang` VALUES (7, 'A', 'Sikat Gigi', 9, 1, 10000, '2024-12-03 13:28:36');
-INSERT INTO `barang` VALUES (8, 'A', 'Sikat WC', 9, 1, 100000, '2024-12-03 14:20:34');
+INSERT INTO `barang` VALUES (1, 'A', 'Sikat Gigi', 1, 1, 10000, '2024-12-03 13:28:36');
+INSERT INTO `barang` VALUES (2, 'A', 'Sikat WC', 1, 1, 100000, '2024-12-03 14:20:34');
 
 -- ----------------------------
 -- Table structure for detail_penerimaan
@@ -212,8 +212,8 @@ CREATE TABLE `pengadaan`  (
 -- ----------------------------
 -- Records of pengadaan
 -- ----------------------------
-INSERT INTO `pengadaan` VALUES (5, '2024-12-03 13:38:17', 1, 0, 7, 1000000, 10, 1100000);
-INSERT INTO `pengadaan` VALUES (6, '2024-12-03 14:20:09', 1, 1, 6, 100000, 10, 110000);
+INSERT INTO `pengadaan` VALUES (1, '2024-12-03 13:38:17', 1, 0, 7, 1000000, 10, 1100000);
+INSERT INTO `pengadaan` VALUES (2, '2024-12-03 14:20:09', 1, 1, 6, 100000, 10, 110000);
 
 -- ----------------------------
 -- Table structure for penjualan
@@ -291,7 +291,7 @@ CREATE TABLE `satuan`  (
 -- ----------------------------
 -- Records of satuan
 -- ----------------------------
-INSERT INTO `satuan` VALUES (9, 'Kilogram', 1, NULL, NULL);
+INSERT INTO `satuan` VALUES (1, 'Kilogram', 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user
@@ -330,8 +330,8 @@ CREATE TABLE `vendor`  (
 -- ----------------------------
 -- Records of vendor
 -- ----------------------------
-INSERT INTO `vendor` VALUES (6, 'PT Sumber Makmur', 'P', 1);
-INSERT INTO `vendor` VALUES (7, 'CV Asikin Aja', 'C', 1);
+INSERT INTO `vendor` VALUES (1, 'PT Sumber Makmur', 'P', 1);
+INSERT INTO `vendor` VALUES (2, 'CV Asikin Aja', 'C', 1);
 
 -- ----------------------------
 -- Procedure structure for InsertBarang
