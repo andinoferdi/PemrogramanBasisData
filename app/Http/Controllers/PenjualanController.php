@@ -7,12 +7,38 @@ use Illuminate\Http\Request;
 
 class PenjualanController extends Controller
 {
+
+    public function index()
+    {
+        $penjualan = DB::table('penjualan')
+            ->join('user', 'penjualan.user_id', '=', 'user.user_id')
+            ->join('margin_penjualan', 'penjualan.margin_penjualan_id', '=', 'margin_penjualan.margin_penjualan_id')
+            ->select('penjualan.*', 'user.username', 'margin_penjualan.persen')
+            ->get();
+
+        return view('dashboard.penjualan.index', compact('penjualan'));
+    }
+
     public function create()
     {
         $users = DB::table('user')->get();
         $margin_penjualan = DB::table('margin_penjualan')->get();
-        return view('penjualan.create', compact('users', 'margin_penjualan'));
+        return view('dashboard.penjualan.create', compact('users', 'margin_penjualan'));
     }
+
+    public function edit($id)
+    {
+        $penjualan = DB::table('penjualan')->where('penjualan_id', $id)->first();
+        $users = DB::table('user')->get();
+        $margin_penjualan = DB::table('margin_penjualan')->get();
+
+        if (!$penjualan) {
+            abort(404, 'Data penjualan tidak ditemukan.');
+        }
+
+        return view('dashboard.penjualan.edit', compact('penjualan', 'users', 'margin_penjualan'));
+    }
+
 
     public function store(Request $request)
     {
@@ -74,7 +100,7 @@ class PenjualanController extends Controller
         return redirect()->route('penjualan.index')->with('success', 'Penjualan berhasil diperbarui!');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         DB::table('penjualan')->where('penjualan_id', $id)->delete();
         return redirect()->route('penjualan.index')->with('success', 'Penjualan berhasil dihapus!');

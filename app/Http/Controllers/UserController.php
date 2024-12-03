@@ -7,6 +7,34 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+    public function index()
+    {
+        $users = DB::table('user')
+            ->join('role', 'user.role_id', '=', 'role.role_id')
+            ->select('user.*', 'role.nama_role')
+            ->get();
+
+        return view('dashboard.user.index', compact('users'));
+    }
+
+    public function create()
+    {
+        $roles = DB::table('role')->get();
+        return view('dashboard.user.create', compact('roles'));
+    }
+
+    public function edit($id)
+    {
+        $user = DB::table('user')->where('user_id', $id)->first();
+        $roles = DB::table('role')->get();
+
+        if (!$user) {
+            abort(404, 'User tidak ditemukan.');
+        }
+
+        return view('dashboard.user.edit', compact('user', 'roles'));
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -54,7 +82,7 @@ class UserController extends Controller
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         try {
             DB::table('user')->where('user_id', $id)->delete();

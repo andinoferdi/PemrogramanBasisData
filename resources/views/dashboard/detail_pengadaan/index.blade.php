@@ -5,10 +5,10 @@
         <div class="card">
             <div class="card-header border-0 pt-6">
                 <div class="card-title">
-                    <h1 class="h3"><strong>Master</strong> Satuan</h1>
+                    <h1 class="h3"><strong>Master</strong> Detail Pengadaan</h1>
                 </div>
                 <div class="card-toolbar">
-                    <a href="{{ route('satuan.create') }}" class="btn btn-primary">Tambah Satuan</a>
+                    <a href="{{ route('detailPengadaan.create') }}" class="btn btn-primary">Tambah Detail Pengadaan</a>
                 </div>
             </div>
 
@@ -21,28 +21,30 @@
 
                 <table class="table table-bordered">
                     <thead>
-                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                        <tr>
                             <th>No</th>
-                            <th>Nama Satuan</th>
-                            <th>Status</th>
-                            <th class="min-w-100px">Aksi</th>
+                            <th>Pengadaan ID</th>
+                            <th>Barang</th>
+                            <th>Harga Satuan</th>
+                            <th>Jumlah</th>
+                            <th>Subtotal</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="fw-semibold text-gray-600">
-                        @foreach ($satuan as $satuan)
+                    <tbody>
+                        @foreach ($detailPengadaan as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $satuan->nama_satuan }}</td>
+                                <td>{{ $item->pengadaan_id }}</td>
+                                <td>{{ $item->nama_barang }}</td>
+                                <td>{{ $item->harga_satuan }}</td>
+                                <td>{{ $item->jumlah }}</td>
+                                <td>{{ $item->subtotal }}</td>
                                 <td>
-                                    <span class="{{ $satuan->status == 1 ? 'text-success' : 'text-danger' }}">
-                                        {{ $satuan->status == 1 ? 'Aktif' : 'Tidak Aktif' }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <a href="{{ route('satuan.edit', $satuan->satuan_id) }}"
+                                    <a href="{{ route('detailPengadaan.edit', $item->detail_pengadaan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('satuan.destroy', $satuan->satuan_id) }}" method="POST"
-                                        style="display:inline-block;">
+                                    <form action="{{ route('detailPengadaan.destroy', $item->detail_pengadaan_id) }}"
+                                        method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -55,7 +57,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
 @endsection

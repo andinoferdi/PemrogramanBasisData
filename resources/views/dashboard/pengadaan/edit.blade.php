@@ -10,7 +10,7 @@
             <div class="card-body pt-0">
                 <form action="{{ route('pengadaan.update', $pengadaan->pengadaan_id) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
 
                     <div class="mb-3">
                         <label for="user_id" class="form-label">User</label>

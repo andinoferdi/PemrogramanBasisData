@@ -7,6 +7,35 @@ use Illuminate\Http\Request;
 
 class MarginPenjualanController extends Controller
 {
+
+     public function index()
+    {
+        $marginPenjualan = DB::table('margin_penjualan')
+            ->join('user', 'margin_penjualan.user_id', '=', 'user.user_id')
+            ->select('margin_penjualan.*', 'user.username')
+            ->get();
+
+        return view('dashboard.margin_penjualan.index', compact('marginPenjualan'));
+    }
+
+    public function create()
+    {
+        $users = DB::table('user')->get();
+        return view('dashboard.margin_penjualan.create', compact('users'));
+    }
+
+    public function edit($id)
+    {
+        $marginPenjualan = DB::table('margin_penjualan')->where('margin_penjualan_id', $id)->first();
+        $users = DB::table('user')->get();
+
+        if (!$marginPenjualan) {
+            abort(404, 'Data margin penjualan tidak ditemukan.');
+        }
+
+        return view('dashboard.margin_penjualan.edit', compact('marginPenjualan', 'users'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -43,7 +72,7 @@ class MarginPenjualanController extends Controller
         return redirect()->route('margin_penjualan.index')->with('success', 'Margin Penjualan berhasil diperbarui!');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         DB::table('margin_penjualan')
             ->where('margin_penjualan_id', $id)

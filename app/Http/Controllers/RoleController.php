@@ -8,6 +8,29 @@ use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
+
+    public function index()
+    {
+        $roles = DB::table('role')->get();
+        return view('dashboard.role.index', compact('roles'));
+    }
+
+    public function create()
+    {
+        return view('dashboard.role.create');
+    }
+
+    public function edit($id)
+    {
+        $role = DB::table('role')->where('role_id', $id)->first();
+
+        if (!$role) {
+            abort(404, 'Role tidak ditemukan.');
+        }
+
+        return view('dashboard.role.edit', compact('role'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -44,7 +67,7 @@ class RoleController extends Controller
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         try {
             DB::table('role')->where('role_id', $id)->delete();

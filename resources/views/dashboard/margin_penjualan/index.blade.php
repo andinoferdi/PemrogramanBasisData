@@ -44,7 +44,7 @@
                                 <td>
                                     <a href="{{ route('margin_penjualan.edit', $margin->margin_penjualan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('margin_penjualan.delete', $margin->margin_penjualan_id) }}"
+                                    <form action="{{ route('margin_penjualan.destroy', $margin->margin_penjualan_id) }}"
                                         method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')

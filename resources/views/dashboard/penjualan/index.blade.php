@@ -34,14 +34,14 @@
                         @foreach ($penjualan as $penjualan)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $penjualan->user_id }}</td>
+                                <td>{{ $penjualan->username }}</td>
                                 <td>{{ $penjualan->persen }} %</td>
                                 <td>{{ $penjualan->ppn }} %</td>
                                 <td>{{ number_format($penjualan->total_nilai, 0, ',', '.') }}</td>
                                 <td>
                                     <a href="{{ route('penjualan.edit', $penjualan->penjualan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('penjualan.delete', $penjualan->penjualan_id) }}" method="POST"
+                                    <form action="{{ route('penjualan.destroy', $penjualan->penjualan_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

@@ -44,7 +44,7 @@
                                 <td>
                                     <a href="{{ route('vendor.edit', $vendor->vendor_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('vendor.delete', $vendor->vendor_id) }}" method="POST"
+                                    <form action="{{ route('vendor.destroy', $vendor->vendor_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

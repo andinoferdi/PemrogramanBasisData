@@ -9,7 +9,7 @@
             <div class="card-body">
                 <form action="{{ route('user.update', $user->user_id) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" name="username" class="form-control" value="{{ $user->username }}" required

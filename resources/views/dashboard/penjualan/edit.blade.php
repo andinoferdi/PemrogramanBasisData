@@ -10,7 +10,7 @@
             <div class="card-body pt-0">
                 <form action="{{ route('penjualan.update', $penjualan->penjualan_id) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
 
                     <div class="mb-3">
                         <label for="user_id" class="form-label">User</label>
@@ -30,7 +30,7 @@
                     <div class="mb-3">
                         <label for="margin_penjualan_id" class="form-label">Margin Penjualan</label>
                         <select name="margin_penjualan_id" class="form-select" required>
-                            @foreach ($margin_Penjualan as $margin)
+                            @foreach ($margin_penjualan as $margin)
                                 @if ($margin->status == 1)
                                     <option value="{{ $margin->margin_penjualan_id }}"
                                         {{ $margin->margin_penjualan_id == $penjualan->margin_penjualan_id ? 'selected' : '' }}>

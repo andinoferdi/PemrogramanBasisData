@@ -10,7 +10,7 @@
             <div class="card-body pt-0">
                 <form action="{{ route('satuan.update', $satuan->satuan_id) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="nama_satuan" class="form-label">Nama Satuan</label>
                         <input type="text" name="nama_satuan" class="form-control" value="{{ $satuan->nama_satuan }}"

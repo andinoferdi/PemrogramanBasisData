@@ -9,6 +9,8 @@
             <div class="card-body">
                 <form action="{{ route('barang.update', $barang->barang_id) }}" method="POST">
                     @csrf
+                    @method('PUT')
+
                     <div class="mb-3">
                         <label for="jenis" class="form-label">Jenis</label>
                         <input type="text" name="jenis" class="form-control @error('jenis') is-invalid @enderror"

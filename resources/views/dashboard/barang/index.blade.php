@@ -26,8 +26,8 @@
                             <th>Jenis</th>
                             <th>Nama Barang</th>
                             <th>Satuan</th>
-                            <th>Status</th>
                             <th>Harga</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -38,16 +38,16 @@
                                 <td>{{ $barang->jenis }}</td>
                                 <td>{{ $barang->nama_barang }}</td>
                                 <td>{{ $barang->nama_satuan }}</td>
+                                <td>{{ number_format($barang->harga, 0, ',', '.') }}</td>
                                 <td>
                                     <span class="{{ $barang->status == 1 ? 'text-success' : 'text-danger' }}">
                                         {{ $barang->status == 1 ? 'Aktif' : 'Tidak Aktif' }}
                                     </span>
                                 </td>
-                                <td>{{ number_format($barang->harga, 0, ',', '.') }}</td>
                                 <td>
                                     <a href="{{ route('barang.edit', $barang->barang_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('barang.delete', $barang->barang_id) }}" method="POST"
+                                    <form action="{{ route('barang.destroy', $barang->barang_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

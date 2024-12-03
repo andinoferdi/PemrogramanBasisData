@@ -24,8 +24,8 @@
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th>No</th>
                             <th>Nama Vendor</th>
-                            <th>Status</th>
                             <th>Total Nilai</th>
+                            <th>Status</th>
                             <th class="min-w-100px">Aksi</th>
                         </tr>
                     </thead>
@@ -34,14 +34,14 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $pengadaan->nama_vendor }}</td>
+                                <td>{{ number_format($pengadaan->total_nilai, 0, ',', '.') }}</td>
                                 <td class="{{ $pengadaan->status == 0 ? 'text-danger' : 'text-success' }}">
                                     {{ $pengadaan->status == 0 ? 'Pending' : 'Sukses' }}
                                 </td>
-                                <td>{{ number_format($pengadaan->total_nilai, 0, ',', '.') }}</td>
                                 <td>
                                     <a href="{{ route('pengadaan.edit', $pengadaan->pengadaan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('pengadaan.delete', $pengadaan->pengadaan_id) }}" method="POST"
+                                    <form action="{{ route('pengadaan.destroy', $pengadaan->pengadaan_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

@@ -7,12 +7,35 @@ use Illuminate\Support\Facades\DB;
 
 class VendorController extends Controller
 {
+
+    public function index()
+    {
+        $vendor = DB::table('vendor')->get();
+        return view('dashboard.vendor.index', compact('vendor'));
+    }
+
+    public function create()
+    {
+        return view('dashboard.vendor.create');
+    }
+
+    public function edit($id)
+    {
+        $vendor = DB::table('vendor')->where('vendor_id', $id)->first();
+
+        if (!$vendor) {
+            abort(404, 'Data vendor tidak ditemukan.');
+        }
+
+        return view('dashboard.vendor.edit', compact('vendor'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'nama_vendor' => 'required|string|max:100',
             'badan_hukum' => 'required|in:P,C',
-            'status' => 'required|in:A,I',
+            'status' => 'required',
         ]);
 
         try {
@@ -33,7 +56,7 @@ class VendorController extends Controller
         $request->validate([
             'nama_vendor' => 'required|string|max:100',
             'badan_hukum' => 'required|in:P,C',
-            'status' => 'required|in:A,I',
+            'status' => 'required',
         ]);
 
         try {

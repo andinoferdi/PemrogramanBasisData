@@ -35,7 +35,7 @@
                                 <td>
                                     <a href="{{ route('role.edit', $role->role_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('role.delete', $role->role_id) }}" method="POST"
+                                    <form action="{{ route('role.destroy', $role->role_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
