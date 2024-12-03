@@ -10,8 +10,10 @@ use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PengadaanController;
 use App\Http\Controllers\DetailPengadaanController;
-use App\Http\Controllers\MarginPenjualanController;
+use App\Http\Controllers\PenerimaanController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\DetailPenjualanController;
+use App\Http\Controllers\MarginPenjualanController;
 
 
 
@@ -32,6 +34,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('pengadaan', PengadaanController::class);
    Route::resource('detail_pengadaan', DetailPengadaanController::class);
+   Route::resource('penerimaan', PenerimaanController::class);
     Route::resource('margin_penjualan', MarginPenjualanController::class);
     Route::resource('penjualan', PenjualanController::class);
+   Route::resource('detail_penjualan', DetailPenjualanController::class);
+
 });

@@ -52,6 +52,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="card-toolbar">
+                    <a href="{{ route('detail_penjualan.index') }}" class="btn btn-info">Lihat Detail Penjualan</a>
+                </div>
             </div>
         </div>
     </div>

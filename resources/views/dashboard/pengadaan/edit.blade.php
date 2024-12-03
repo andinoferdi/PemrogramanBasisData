@@ -61,16 +61,6 @@
                         @enderror
                     </div>
 
-                    @if (auth()->user()->role_id == '1')
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status Pengadaan</label>
-                            <select name="status" class="form-select" required>
-                                <option value="0" {{ $pengadaan->status == 0 ? 'selected' : '' }}>Pending</option>
-                                <option value="1" {{ $pengadaan->status == 1 ? 'selected' : '' }}>Sukses</option>
-                            </select>
-                        </div>
-                    @endif
-
                     <button type="submit" class="btn btn-primary">Perbarui</button>
                 </form>
             </div>
