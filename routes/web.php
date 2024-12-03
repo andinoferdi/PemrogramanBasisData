@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('role', RoleController::class);
     Route::resource('user', UserController::class);
     Route::resource('pengadaan', PengadaanController::class);
-    Route::resource('detailPengadaan', DetailPengadaanController::class);
+   Route::resource('detail_pengadaan', DetailPengadaanController::class);
     Route::resource('margin_penjualan', MarginPenjualanController::class);
     Route::resource('penjualan', PenjualanController::class);
 });

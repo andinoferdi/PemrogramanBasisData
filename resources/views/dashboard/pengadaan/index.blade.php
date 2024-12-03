@@ -9,6 +9,7 @@
                 </div>
                 <div class="card-toolbar">
                     <a href="{{ route('pengadaan.create') }}" class="btn btn-primary">Tambah Pengadaan</a>
+
                 </div>
             </div>
 
@@ -52,6 +53,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="card-toolbar">
+                    <a href="{{ route('detail_pengadaan.index') }}" class="btn btn-info">Lihat Detail Pengadaan</a>
+                </div>
             </div>
         </div>
     </div>

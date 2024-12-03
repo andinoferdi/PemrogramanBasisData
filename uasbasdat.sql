@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 02/12/2024 13:05:06
+ Date: 03/12/2024 14:27:30
 */
 
 SET NAMES utf8mb4;
@@ -32,15 +32,13 @@ CREATE TABLE `barang`  (
   PRIMARY KEY (`barang_id`) USING BTREE,
   INDEX `satuan_id`(`satuan_id` ASC) USING BTREE,
   CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`satuan_id`) REFERENCES `satuan` (`satuan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of barang
 -- ----------------------------
-INSERT INTO `barang` VALUES (1, 'A', 'Sabun', 1, 1, 600000, '2024-10-29 09:06:39');
-INSERT INTO `barang` VALUES (2, 'B', 'Shampo', 1, 1, 10000, '2024-10-29 09:06:39');
-INSERT INTO `barang` VALUES (3, 'C', 'Air Mineral', 2, 1, 300000, '2024-10-29 09:06:39');
-INSERT INTO `barang` VALUES (5, 'A', 'Sikat', 1, 1, 100000000, '2024-11-19 12:35:01');
+INSERT INTO `barang` VALUES (7, 'A', 'Sikat Gigi', 9, 1, 10000, '2024-12-03 13:28:36');
+INSERT INTO `barang` VALUES (8, 'A', 'Sikat WC', 9, 1, 100000, '2024-12-03 14:20:34');
 
 -- ----------------------------
 -- Table structure for detail_penerimaan
@@ -80,7 +78,7 @@ CREATE TABLE `detail_pengadaan`  (
   INDEX `barang_id`(`barang_id` ASC) USING BTREE,
   CONSTRAINT `detail_pengadaan_ibfk_1` FOREIGN KEY (`pengadaan_id`) REFERENCES `pengadaan` (`pengadaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detail_pengadaan_ibfk_2` FOREIGN KEY (`barang_id`) REFERENCES `barang` (`barang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of detail_pengadaan
@@ -209,12 +207,13 @@ CREATE TABLE `pengadaan`  (
   INDEX `vendor_id`(`vendor_id` ASC) USING BTREE,
   CONSTRAINT `pengadaan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `pengadaan_ibfk_2` FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pengadaan
 -- ----------------------------
-INSERT INTO `pengadaan` VALUES (1, '2024-11-26 18:03:13', 1, 0, 1, 50000, 10, 55000);
+INSERT INTO `pengadaan` VALUES (5, '2024-12-03 13:38:17', 1, 0, 7, 1000000, 10, 1100000);
+INSERT INTO `pengadaan` VALUES (6, '2024-12-03 14:20:09', 1, 1, 6, 100000, 10, 110000);
 
 -- ----------------------------
 -- Table structure for penjualan
@@ -275,7 +274,6 @@ CREATE TABLE `role`  (
 INSERT INTO `role` VALUES (1, 'Admin');
 INSERT INTO `role` VALUES (2, 'Manager');
 INSERT INTO `role` VALUES (3, 'Staff');
-INSERT INTO `role` VALUES (5, 'CEO');
 
 -- ----------------------------
 -- Table structure for satuan
@@ -288,14 +286,12 @@ CREATE TABLE `satuan`  (
   `created_at` datetime NULL DEFAULT NULL,
   `updated_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`satuan_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of satuan
 -- ----------------------------
-INSERT INTO `satuan` VALUES (1, 'Kilogram', 1, '2024-10-29 09:06:39', NULL);
-INSERT INTO `satuan` VALUES (2, 'Liter', 1, '2024-10-29 09:06:39', NULL);
-INSERT INTO `satuan` VALUES (3, 'Celcius', 1, '2024-10-29 09:06:39', NULL);
+INSERT INTO `satuan` VALUES (9, 'Kilogram', 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user
@@ -329,13 +325,13 @@ CREATE TABLE `vendor`  (
   `badan_hukum` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `status` tinyint NOT NULL,
   PRIMARY KEY (`vendor_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of vendor
 -- ----------------------------
-INSERT INTO `vendor` VALUES (1, 'PT Maju Jaya', 'P', 1);
-INSERT INTO `vendor` VALUES (2, 'CV Sejahtera', 'C', 1);
+INSERT INTO `vendor` VALUES (6, 'PT Sumber Makmur', 'P', 1);
+INSERT INTO `vendor` VALUES (7, 'CV Asikin Aja', 'C', 1);
 
 -- ----------------------------
 -- Procedure structure for InsertBarang
@@ -351,6 +347,44 @@ BEGIN
     INSERT INTO barang (jenis, nama_barang, satuan_id, status, harga)
     VALUES (p_jenis, p_nama_barang, p_satuan_id, p_status, p_harga);
     SELECT LAST_INSERT_ID() AS barang_id;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for InsertDetailPengadaan
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `InsertDetailPengadaan`;
+delimiter ;;
+CREATE PROCEDURE `InsertDetailPengadaan`(IN pengadaan_id BIGINT,
+    IN barang_id INT,
+    IN harga_satuan INT,
+    IN jumlah INT,
+    IN subtotal INT)
+BEGIN
+    INSERT INTO detail_pengadaan (pengadaan_id, barang_id, harga_satuan, jumlah, subtotal)
+    VALUES (pengadaan_id, barang_id, harga_satuan, jumlah, subtotal);
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for InsertPenerimaan
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `InsertPenerimaan`;
+delimiter ;;
+CREATE PROCEDURE `InsertPenerimaan`(IN pengadaan_id INT,
+    IN jumlah INT,
+    IN tanggal DATE)
+BEGIN
+    -- Menambahkan data penerimaan
+    INSERT INTO penerimaan (pengadaan_id, jumlah, tanggal)
+    VALUES (pengadaan_id, jumlah, tanggal);
+    
+    -- Update kartu stok (jika diperlukan)
+    UPDATE kartu_stok
+    SET stok = stok + jumlah
+    WHERE barang_id IN (SELECT barang_id FROM pengadaan_barang WHERE pengadaan_id = pengadaan_id);
 END
 ;;
 delimiter ;
@@ -448,6 +482,46 @@ BEGIN
     INSERT INTO vendor (nama_vendor, badan_hukum, status)
     VALUES (p_nama_vendor, p_badan_hukum, p_status);
     SELECT LAST_INSERT_ID() AS vendor_id;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for insert_detail_pengadaan
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `insert_detail_pengadaan`;
+delimiter ;;
+CREATE PROCEDURE `insert_detail_pengadaan`(IN barang_id INT,
+    IN harga_satuan INT,
+    IN jumlah INT,
+    IN pengadaan_id INT)
+BEGIN
+    DECLARE subtotal INT;
+    SET subtotal = harga_satuan * jumlah;
+
+    INSERT INTO detail_pengadaan (barang_id, harga_satuan, jumlah, subtotal, pengadaan_id)
+    VALUES (barang_id, harga_satuan, jumlah, subtotal, pengadaan_id);
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sp_insert_detail_pengadaan
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_insert_detail_pengadaan`;
+delimiter ;;
+CREATE PROCEDURE `sp_insert_detail_pengadaan`(IN `pengadaan_id` BIGINT,
+    IN `barang_id` INT,
+    IN `harga_satuan` INT,
+    IN `jumlah` INT)
+BEGIN
+    DECLARE `subtotal` INT;
+    
+    SET `subtotal` = `harga_satuan` * `jumlah`;
+
+    INSERT INTO `detail_pengadaan` (`pengadaan_id`, `barang_id`, `harga_satuan`, `jumlah`, `subtotal`)
+    VALUES (`pengadaan_id`, `barang_id`, `harga_satuan`, `jumlah`, `subtotal`);
+    
 END
 ;;
 delimiter ;
