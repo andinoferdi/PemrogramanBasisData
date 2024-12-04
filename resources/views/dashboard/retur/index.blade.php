@@ -5,10 +5,10 @@
         <div class="card">
             <div class="card-header border-0 pt-6">
                 <div class="card-title">
-                    <h1 class="h3"><strong>Master</strong> Penerimaan</h1>
+                    <h1 class="h3"><strong>Master</strong> Retur</h1>
                 </div>
                 <div class="card-toolbar">
-                    <a href="{{ route('penerimaan.create') }}" class="btn btn-primary">Tambah Penerimaan</a>
+                    <a href="{{ route('retur.create') }}" class="btn btn-primary">Tambah Retur</a>
                 </div>
             </div>
 
@@ -23,24 +23,22 @@
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th>No</th>
-                            <th>Pengadaan ID</th>
-                            <th>Nama Vendor</th>
                             <th>User</th>
+                            <th>Penerimaan ID</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
-                        @forelse ($penerimaan as $item)
+                        @forelse ($retur as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->pengadaan_id }}</td>
-                                <td>{{ $item->nama_vendor }}</td>
                                 <td>{{ $item->username }}</td>
+                                <td>{{ $item->penerimaan_id }} - {{ $item->nama_vendor }}</td>
                                 <td>
-                                    <a href="{{ route('penerimaan.edit', $item->penerimaan_id) }}"
+                                    <a href="{{ route('retur.edit', $item->retur_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('penerimaan.destroy', $item->penerimaan_id) }}" method="POST"
-                                        style="display:inline;">
+                                    <form action="{{ route('retur.destroy', $item->retur_id) }}" method="POST"
+                                        style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -49,13 +47,13 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">Tidak ada data penerimaan.</td>
+                                <td colspan="4" class="text-center">Tidak ada data retur.</td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
                 <div class="card-toolbar">
-                    <a href="{{ route('detail_penerimaan.index') }}" class="btn btn-info">Lihat Detail Penerimaan</a>
+                    <a href="{{ route('detail_retur.index') }}" class="btn btn-info">Lihat Detail Retur</a>
                 </div>
             </div>
         </div>

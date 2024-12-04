@@ -74,7 +74,7 @@
             </div>
 
             <div class="menu-item py-3">
-                <a class="menu-link {{ request()->routeIs('pengadaan.*') ? 'active' : '' }} menu-center"
+                <a class="menu-link {{ request()->routeIs('pengadaan.*') || request()->routeIs('detail_pengadaan.*') ? 'active' : '' }} ? 'active' : '' }} menu-center"
                     href="{{ route('pengadaan.index') }}" title="Pengadaan" data-bs-toggle="tooltip"
                     data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                     <span class="menu-icon me-0">
@@ -84,14 +84,25 @@
             </div>
 
             <div class="menu-item py-3">
-                <a class="menu-link {{ request()->routeIs('penerimaan.*') ? 'active' : '' }} menu-center"
+                <a class="menu-link {{ request()->routeIs('penerimaan.*') || request()->routeIs('detail_penerimaan.*') ? 'active' : '' }} ? 'active' : '' }} menu-center"
                     href="{{ route('penerimaan.index') }}" title="penerimaan" data-bs-toggle="tooltip"
                     data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                     <span class="menu-icon me-0">
-                        <i class="bi bi-cart fs-2"></i>
+                        <i class="bi bi-inbox fs-2"></i>
                     </span>
                 </a>
             </div>
+
+            <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('retur.*') || request()->routeIs('detail_retur.*') ? 'active' : '' }} menu-center"
+                    href="{{ route('retur.index') }}" title="retur" data-bs-toggle="tooltip"
+                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-arrow-repeat fs-2"></i>
+                    </span>
+                </a>
+            </div>
+
 
             <div class="menu-item py-3">
                 <a class="menu-link {{ request()->routeIs('margin_penjualan.*') ? 'active' : '' }} menu-center"

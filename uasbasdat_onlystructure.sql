@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80030 (8.0.30)
  Source Host           : localhost:3306
- Source Schema         : hr
+ Source Schema         : uasbasdat
 
  Target Server Type    : MySQL
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 03/12/2024 23:57:39
+ Date: 04/12/2024 17:13:15
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `barang`  (
   PRIMARY KEY (`barang_id`) USING BTREE,
   INDEX `satuan_id`(`satuan_id` ASC) USING BTREE,
   CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`satuan_id`) REFERENCES `satuan` (`satuan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for detail_penerimaan
@@ -50,7 +50,7 @@ CREATE TABLE `detail_penerimaan`  (
   INDEX `barang_id`(`barang_id` ASC) USING BTREE,
   CONSTRAINT `detail_penerimaan_ibfk_1` FOREIGN KEY (`penerimaan_id`) REFERENCES `penerimaan` (`penerimaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detail_penerimaan_ibfk_2` FOREIGN KEY (`barang_id`) REFERENCES `barang` (`barang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for detail_pengadaan
@@ -103,7 +103,7 @@ CREATE TABLE `detail_retur`  (
   INDEX `detail_penerimaan_id`(`detail_penerimaan_id` ASC) USING BTREE,
   CONSTRAINT `detail_retur_ibfk_1` FOREIGN KEY (`retur_id`) REFERENCES `retur` (`retur_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detail_retur_ibfk_2` FOREIGN KEY (`detail_penerimaan_id`) REFERENCES `detail_penerimaan` (`detail_penerimaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for kartu_stok
@@ -153,7 +153,7 @@ CREATE TABLE `penerimaan`  (
   INDEX `user_id`(`user_id` ASC) USING BTREE,
   CONSTRAINT `penerimaan_ibfk_1` FOREIGN KEY (`pengadaan_id`) REFERENCES `pengadaan` (`pengadaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `penerimaan_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pengadaan
@@ -173,7 +173,7 @@ CREATE TABLE `pengadaan`  (
   INDEX `vendor_id`(`vendor_id` ASC) USING BTREE,
   CONSTRAINT `pengadaan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `pengadaan_ibfk_2` FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for penjualan
@@ -208,7 +208,7 @@ CREATE TABLE `retur`  (
   INDEX `penerimaan_id`(`penerimaan_id` ASC) USING BTREE,
   CONSTRAINT `retur_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `retur_ibfk_2` FOREIGN KEY (`penerimaan_id`) REFERENCES `penerimaan` (`penerimaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for role
@@ -218,7 +218,7 @@ CREATE TABLE `role`  (
   `role_id` int NOT NULL AUTO_INCREMENT,
   `nama_role` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for satuan
@@ -231,7 +231,7 @@ CREATE TABLE `satuan`  (
   `created_at` datetime NULL DEFAULT NULL,
   `updated_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`satuan_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for user
@@ -246,7 +246,7 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`user_id`) USING BTREE,
   INDEX `role_id`(`role_id` ASC) USING BTREE,
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for vendor
@@ -258,25 +258,7 @@ CREATE TABLE `vendor`  (
   `badan_hukum` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `status` tinyint NOT NULL,
   PRIMARY KEY (`vendor_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- View structure for dept20
--- ----------------------------
-DROP VIEW IF EXISTS `dept20`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `dept20` AS select `employees`.`EMPLOYEE_ID` AS `EMPLOYEE_ID`,concat(`employees`.`FIRST_NAME`,' ',`employees`.`LAST_NAME`) AS `EMPLOYEE`,`employees`.`SALARY` AS `SALARY` from `employees` where (`employees`.`DEPARTMENT_ID` = 20);
-
--- ----------------------------
--- View structure for emp_vu
--- ----------------------------
-DROP VIEW IF EXISTS `emp_vu`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `emp_vu` AS select `employees`.`EMPLOYEE_ID` AS `NOMER_PEGAWAI`,concat(`employees`.`FIRST_NAME`,' ',`employees`.`LAST_NAME`) AS `PEGAWAI`,`employees`.`DEPARTMENT_ID` AS `NOMER_DEPARTMENT` from `employees`;
-
--- ----------------------------
--- View structure for empvu20
--- ----------------------------
-DROP VIEW IF EXISTS `empvu20`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `empvu20` AS select `employees`.`EMPLOYEE_ID` AS `EMPLOYEE_ID`,`employees`.`FIRST_NAME` AS `FIRST_NAME`,`employees`.`LAST_NAME` AS `LAST_NAME`,`employees`.`EMAIL` AS `EMAIL`,`employees`.`PHONE_INTEGER` AS `PHONE_INTEGER`,`employees`.`HIRE_DATE` AS `HIRE_DATE`,`employees`.`JOB_ID` AS `JOB_ID`,`employees`.`SALARY` AS `SALARY`,`employees`.`COMMISSION_PCT` AS `COMMISSION_PCT`,`employees`.`MANAGER_ID` AS `MANAGER_ID`,`employees`.`DEPARTMENT_ID` AS `DEPARTMENT_ID` from `employees` where (`employees`.`DEPARTMENT_ID` = 20)  WITH CASCADED CHECK OPTION;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Procedure structure for InsertBarang
@@ -292,6 +274,23 @@ BEGIN
     INSERT INTO barang (jenis, nama_barang, satuan_id, status, harga)
     VALUES (p_jenis, p_nama_barang, p_satuan_id, p_status, p_harga);
     SELECT LAST_INSERT_ID() AS barang_id;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for InsertDetailPenerimaan
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `InsertDetailPenerimaan`;
+delimiter ;;
+CREATE PROCEDURE `InsertDetailPenerimaan`(IN barang_id INT,
+    IN harga_satuan_terima INT,
+    IN jumlah_terima INT,
+    IN penerimaan_id BIGINT,
+    IN subtotal_terima INT)
+BEGIN
+    INSERT INTO detail_penerimaan (barang_id, harga_satuan_terima, jumlah_terima, penerimaan_id, subtotal_terima)
+    VALUES (barang_id, harga_satuan_terima, jumlah_terima, penerimaan_id, subtotal_terima);
 END
 ;;
 delimiter ;
@@ -334,7 +333,7 @@ DROP PROCEDURE IF EXISTS `InsertPengadaan`;
 delimiter ;;
 CREATE PROCEDURE `InsertPengadaan`(IN p_user_id INT,
     IN p_vendor_id INT,
-    IN p_status TINYINT, -- Ubah menjadi TINYINT
+    IN p_status TINYINT,
     IN p_subtotal_nilai INT,
     IN p_ppn INT,
     IN p_total_nilai INT)
@@ -425,6 +424,23 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for insert_detail_penerimaan
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `insert_detail_penerimaan`;
+delimiter ;;
+CREATE PROCEDURE `insert_detail_penerimaan`(IN barang_id INT,
+    IN harga_satuan_terima INT,
+    IN jumlah_terima INT,
+    IN penerimaan_id BIGINT,
+    IN subtotal_terima INT)
+BEGIN
+    INSERT INTO detail_penerimaan (barang_id, harga_satuan_terima, jumlah_terima, penerimaan_id, subtotal_terima)
+    VALUES (barang_id, harga_satuan_terima, jumlah_terima, penerimaan_id, subtotal_terima);
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for insert_detail_pengadaan
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_detail_pengadaan`;
@@ -464,22 +480,31 @@ END
 delimiter ;
 
 -- ----------------------------
--- Procedure structure for sp_insert_detail_pengadaan
+-- Procedure structure for insert_detail_retur
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `sp_insert_detail_pengadaan`;
+DROP PROCEDURE IF EXISTS `insert_detail_retur`;
 delimiter ;;
-CREATE PROCEDURE `sp_insert_detail_pengadaan`(IN `pengadaan_id` BIGINT,
-    IN `barang_id` INT,
-    IN `harga_satuan` INT,
-    IN `jumlah` INT)
+CREATE PROCEDURE `insert_detail_retur`(IN retur_id BIGINT,
+    IN jumlah INT,
+    IN alasan VARCHAR(200),
+    IN detail_penerimaan_id BIGINT)
 BEGIN
-    DECLARE `subtotal` INT;
-    
-    SET `subtotal` = `harga_satuan` * `jumlah`;
+    INSERT INTO detail_retur (retur_id, jumlah, alasan, detail_penerimaan_id)
+    VALUES (retur_id, jumlah, alasan, detail_penerimaan_id);
+END
+;;
+delimiter ;
 
-    INSERT INTO `detail_pengadaan` (`pengadaan_id`, `barang_id`, `harga_satuan`, `jumlah`, `subtotal`)
-    VALUES (`pengadaan_id`, `barang_id`, `harga_satuan`, `jumlah`, `subtotal`);
-    
+-- ----------------------------
+-- Procedure structure for insert_retur
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `insert_retur`;
+delimiter ;;
+CREATE PROCEDURE `insert_retur`(IN user_id INT,
+    IN penerimaan_id BIGINT)
+BEGIN
+    INSERT INTO retur (user_id, penerimaan_id)
+    VALUES (user_id, penerimaan_id);
 END
 ;;
 delimiter ;
@@ -519,7 +544,7 @@ CREATE TRIGGER `update_status_after_delete_penerimaan` AFTER DELETE ON `penerima
 
     IF total_penerimaan = 0 THEN
         UPDATE pengadaan
-        SET status = 0  -- status Pending
+        SET status = 0 
         WHERE pengadaan_id = OLD.pengadaan_id;
     END IF;
 END

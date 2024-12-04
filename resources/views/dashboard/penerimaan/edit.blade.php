@@ -19,7 +19,7 @@
                             @foreach ($pengadaan as $item)
                                 <option value="{{ $item->pengadaan_id }}"
                                     {{ $item->pengadaan_id == $penerimaan->pengadaan_id ? 'selected' : '' }}>
-                                    {{ $item->pengadaan_id }} - {{ $item->nama_vendor }}
+                                    Pengadaan ID: {{ $item->pengadaan_id }} - {{ $item->nama_vendor }}
                                 </option>
                             @endforeach
                         </select>
