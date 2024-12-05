@@ -55,7 +55,7 @@
                                 @if ($pengadaan->status == 1)
                                     <option value="{{ $pengadaan->pengadaan_id }}"
                                         {{ old('pengadaan_id') == $pengadaan->pengadaan_id ? 'selected' : '' }}>
-                                        {{ $pengadaan->pengadaan_id }} - {{ $pengadaan->nama_vendor }}
+                                        Pengadaan Id: {{ $pengadaan->pengadaan_id }} - {{ $pengadaan->nama_vendor }}
                                     </option>
                                 @endif
                             @endforeach

@@ -36,7 +36,7 @@
                             @foreach ($penerimaan as $penerimaan)
                                 <option value="{{ $penerimaan->penerimaan_id }}"
                                     {{ old('penerimaan_id') == $penerimaan->penerimaan_id ? 'selected' : '' }}>
-                                    Penerimaan ID: {{ $penerimaan->penerimaan_id }} - Vendor: {{ $penerimaan->nama_vendor }}
+                                    Penerimaan Id: {{ $penerimaan->penerimaan_id }} - Vendor: {{ $penerimaan->nama_vendor }}
                                 </option>
                             @endforeach
                         </select>

@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Pengelolaan Barang dengan Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi ini adalah sistem pengelolaan data barang berbasis web yang dikembangkan menggunakan framework Laravel. Aplikasi ini dirancang untuk mendukung pengelolaan pengadaan, penerimaan, penjualan, retur, dan kartu stok barang.
 
-## About Laravel
+## Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Pengadaan Barang**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    - Tambah pengadaan barang dari vendor.
+    - Kelola data pengadaan seperti jumlah barang dan total nilai pengadaan.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. **Penerimaan Barang**
 
-## Learning Laravel
+    - Mencatat penerimaan barang berdasarkan pengadaan.
+    - Validasi jumlah barang yang diterima tidak melebihi jumlah pengadaan.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Penjualan Barang**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    - Mencatat transaksi penjualan barang.
+    - Pengurangan otomatis stok barang berdasarkan jumlah penjualan.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. **Retur Barang**
 
-## Laravel Sponsors
+    - Mencatat barang yang diretur.
+    - Penyesuaian otomatis stok barang berdasarkan retur.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. **Kartu Stok**
+    - Melihat riwayat pergerakan stok barang secara rinci.
+    - Menampilkan jenis transaksi, jumlah masuk, keluar, dan saldo akhir barang.
 
-### Premium Partners
+## Teknologi yang Digunakan
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   **Framework**: Laravel
+-   **Database**: MySQL
+-   **Frontend**: Blade Template
 
-## Contributing
+## Penggunaan
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Pengadaan Barang
 
-## Code of Conduct
+1. Masuk ke menu **Pengadaan Barang**.
+2. Klik **Tambah Pengadaan** dan isi detail pengadaan.
+3. Simpan pengadaan untuk mencatat transaksi.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Penerimaan Barang
 
-## Security Vulnerabilities
+1. Masuk ke menu **Penerimaan Barang**.
+2. Pilih pengadaan yang sesuai dan masukkan jumlah barang yang diterima.
+3. Pastikan jumlah barang yang diterima tidak melebihi jumlah pengadaan.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Penjualan Barang
 
-## License
+1. Masuk ke menu **Penjualan Barang**.
+2. Pilih barang yang akan dijual dan masukkan jumlahnya.
+3. Sistem akan otomatis mengurangi stok barang.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Retur Barang
+
+1. Masuk ke menu **Retur Barang**.
+2. Pilih barang yang akan diretur dan masukkan jumlahnya.
+3. Sistem akan otomatis memperbarui stok barang.
+
+### Kartu Stok
+
+1. Masuk ke menu **Kartu Stok**.
+2. Lihat riwayat pergerakan stok barang.
+3. Data yang ditampilkan meliputi transaksi masuk, keluar, dan saldo akhir.
+
+## Kontribusi
+
+Jika Anda ingin berkontribusi pada proyek ini, silakan kirimkan pull request ke repositori.
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).

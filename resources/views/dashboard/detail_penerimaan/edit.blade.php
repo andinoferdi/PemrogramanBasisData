@@ -58,7 +58,7 @@
                             @foreach ($penerimaan as $penerimaan)
                                 <option value="{{ $penerimaan->penerimaan_id }}"
                                     {{ $detailPenerimaan->penerimaan_id == $penerimaan->penerimaan_id ? 'selected' : '' }}>
-                                    {{ $penerimaan->penerimaan_id }}
+                                    Penerimaan Id: {{ $penerimaan->penerimaan_id }}
                                 </option>
                             @endforeach
                         </select>

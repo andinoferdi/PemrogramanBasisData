@@ -54,7 +54,7 @@
                             @foreach ($penjualan as $penjualan)
                                 <option value="{{ $penjualan->penjualan_id }}"
                                     {{ old('penjualan_id') == $penjualan->penjualan_id ? 'selected' : '' }}>
-                                    {{ $penjualan->penjualan_id }} - {{ $penjualan->username }}
+                                    Penjualan Id: {{ $penjualan->penjualan_id }} - {{ $penjualan->username }}
                                 </option>
                             @endforeach
                         </select>
