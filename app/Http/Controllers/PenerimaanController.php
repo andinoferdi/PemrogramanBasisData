@@ -30,8 +30,7 @@ class PenerimaanController extends Controller
             ->join('vendor', 'pengadaan.vendor_id', '=', 'vendor.vendor_id')
             ->select('pengadaan.*', 'vendor.nama_vendor')
             ->get();
-        $users = DB::table('user')->get();  // Mengambil data user untuk pilihan
-
+        $users = DB::table('user')->get();  
         return view('dashboard.penerimaan.create', compact('pengadaan', 'users'));
     }
 

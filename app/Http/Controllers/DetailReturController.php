@@ -9,7 +9,6 @@ class DetailReturController extends Controller
 {
     public function index()
     {
-        // Mengambil data detail_retur, detail_penerimaan, barang, dan retur dengan join
         $detailRetur = DB::table('detail_retur')
             ->join('detail_penerimaan', 'detail_retur.detail_penerimaan_id', '=', 'detail_penerimaan.detail_penerimaan_id')
             ->join('barang', 'detail_penerimaan.barang_id', '=', 'barang.barang_id')
@@ -22,7 +21,6 @@ class DetailReturController extends Controller
 
     public function create()
     {
-        // Ambil semua data penerimaan yang ada
         $retur = DB::table('retur')->get();
         $detailPenerimaan = DB::table('detail_penerimaan')
             ->join('barang', 'detail_penerimaan.barang_id', '=', 'barang.barang_id')
@@ -34,7 +32,6 @@ class DetailReturController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'retur_id' => 'required|integer',
             'jumlah' => 'required|integer',
@@ -42,7 +39,6 @@ class DetailReturController extends Controller
             'detail_penerimaan_id' => 'required|integer',
         ]);
 
-        // Insert data ke tabel detail_retur
         DB::table('detail_retur')->insert([
             'retur_id' => $request->retur_id,
             'jumlah' => $request->jumlah,
@@ -55,7 +51,6 @@ class DetailReturController extends Controller
 
     public function edit($id)
     {
-        // Ambil data detail retur yang ingin diubah
         $detailRetur = DB::table('detail_retur')->where('detail_retur_id', $id)->first();
         $retur = DB::table('retur')->get();
         $detailPenerimaan = DB::table('detail_penerimaan')
@@ -68,7 +63,6 @@ class DetailReturController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi input
         $request->validate([
             'retur_id' => 'required|integer',
             'jumlah' => 'required|integer',
@@ -76,7 +70,6 @@ class DetailReturController extends Controller
             'detail_penerimaan_id' => 'required|integer',
         ]);
 
-        // Update data di tabel detail_retur
         DB::table('detail_retur')
             ->where('detail_retur_id', $id)
             ->update([
@@ -91,7 +84,6 @@ class DetailReturController extends Controller
 
     public function destroy($id)
     {
-        // Hapus data dari tabel detail_retur
         DB::table('detail_retur')->where('detail_retur_id', $id)->delete();
 
         return redirect()->route('detail_retur.index')->with('success', 'Detail Retur berhasil dihapus!');
