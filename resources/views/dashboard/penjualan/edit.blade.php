@@ -16,10 +16,12 @@
                         <label for="user_id" class="form-label">User</label>
                         <select name="user_id" class="form-select" required>
                             @foreach ($users as $user)
-                                <option value="{{ $user->user_id }}"
-                                    {{ $user->user_id == $penjualan->user_id ? 'selected' : '' }}>
-                                    {{ $user->username }}
-                                </option>
+                                @if (auth()->user()->role_id == 1 || auth()->user()->user_id == $user->user_id)
+                                    <option value="{{ $user->user_id }}"
+                                        {{ $user->user_id == $penjualan->user_id ? 'selected' : '' }}>
+                                        {{ $user->username }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('user_id')

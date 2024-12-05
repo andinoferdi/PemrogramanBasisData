@@ -16,11 +16,13 @@
                         <select name="pengadaan_id" class="form-control @error('pengadaan_id') is-invalid @enderror"
                             required>
                             <option value="" disabled>Pilih Pengadaan</option>
-                            @foreach ($pengadaan as $item)
-                                <option value="{{ $item->pengadaan_id }}"
-                                    {{ $item->pengadaan_id == $penerimaan->pengadaan_id ? 'selected' : '' }}>
-                                    Pengadaan ID: {{ $item->pengadaan_id }} - {{ $item->nama_vendor }}
-                                </option>
+                            @foreach ($pengadaan as $pengadaan)
+                                @if ($pengadaan->status == 0)
+                                    <option value="{{ $pengadaan->pengadaan_id }}"
+                                        {{ $pengadaan->pengadaan_id == $penerimaan->pengadaan_id ? 'selected' : '' }}>
+                                        Pengadaan ID: {{ $pengadaan->pengadaan_id }} - {{ $pengadaan->nama_vendor }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('pengadaan_id')
@@ -33,10 +35,12 @@
                         <select name="user_id" class="form-control @error('user_id') is-invalid @enderror" required>
                             <option value="" disabled>Pilih User</option>
                             @foreach ($users as $user)
-                                <option value="{{ $user->user_id }}"
-                                    {{ $user->user_id == $penerimaan->user_id ? 'selected' : '' }}>
-                                    {{ $user->username }}
-                                </option>
+                                @if (auth()->user()->role_id == 1 || auth()->user()->user_id == $user->user_id)
+                                    <option value="{{ $user->user_id }}"
+                                        {{ $user->user_id == $penerimaan->user_id ? 'selected' : '' }}>
+                                        {{ $user->username }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('user_id')

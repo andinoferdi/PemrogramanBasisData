@@ -13,11 +13,13 @@
                         <label for="barang_id" class="form-label">Barang</label>
                         <select name="barang_id" class="form-control @error('barang_id') is-invalid @enderror" required>
                             <option value="" disabled selected>Pilih Barang</option>
-                            @foreach ($barang as $item)
-                                <option value="{{ $item->barang_id }}"
-                                    {{ old('barang_id') == $item->barang_id ? 'selected' : '' }}>
-                                    {{ $item->nama_barang }}
-                                </option>
+                            @foreach ($barang as $barang)
+                                @if ($barang->status == 1)
+                                    <option value="{{ $barang->barang_id }}"
+                                        {{ old('barang_id') == $barang->barang_id ? 'selected' : '' }}>
+                                        {{ $barang->nama_barang }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('barang_id')
@@ -49,19 +51,19 @@
                         <select name="pengadaan_id" class="form-control @error('pengadaan_id') is-invalid @enderror"
                             required>
                             <option value="" disabled selected>Pilih Pengadaan</option>
-                            @foreach ($pengadaan as $item)
-                                <option value="{{ $item->pengadaan_id }}"
-                                    {{ old('pengadaan_id') == $item->pengadaan_id ? 'selected' : '' }}>
-                                    {{ $item->pengadaan_id }} - {{ $item->nama_vendor }}
-                                </option>
+                            @foreach ($pengadaan as $pengadaan)
+                                @if ($pengadaan->status == 1)
+                                    <option value="{{ $pengadaan->pengadaan_id }}"
+                                        {{ old('pengadaan_id') == $pengadaan->pengadaan_id ? 'selected' : '' }}>
+                                        {{ $pengadaan->pengadaan_id }} - {{ $pengadaan->nama_vendor }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('pengadaan_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
-
 
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>

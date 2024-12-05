@@ -17,6 +17,7 @@ use App\Http\Controllers\DetailPenjualanController;
 use App\Http\Controllers\DetailReturController;
 use App\Http\Controllers\MarginPenjualanController;
 use App\Http\Controllers\ReturController;
+use App\Http\Controllers\KartuStokController;
 
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
@@ -42,5 +43,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('margin_penjualan', MarginPenjualanController::class);
     Route::resource('penjualan', PenjualanController::class);
    Route::resource('detail_penjualan', DetailPenjualanController::class);
+   Route::get('/kartu_stok', [KartuStokController::class, 'index'])->name('kartu-stok.index');
 
 });

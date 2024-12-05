@@ -14,10 +14,10 @@
                         <label for="retur_id" class="form-label">Retur</label>
                         <select name="retur_id" class="form-control @error('retur_id') is-invalid @enderror" required>
                             <option value="" disabled>Pilih Retur</option>
-                            @foreach ($retur as $item)
-                                <option value="{{ $item->retur_id }}"
-                                    {{ $item->retur_id == $detailRetur->retur_id ? 'selected' : '' }}>
-                                    Retur Id: {{ $item->retur_id }}
+                            @foreach ($retur as $retur)
+                                <option value="{{ $retur->retur_id }}"
+                                    {{ $retur->retur_id == $detailRetur->retur_id ? 'selected' : '' }}>
+                                    Retur Id: {{ $retur->retur_id }}
                                 </option>
                             @endforeach
                         </select>
@@ -31,10 +31,11 @@
                         <select name="detail_penerimaan_id"
                             class="form-control @error('detail_penerimaan_id') is-invalid @enderror" required>
                             <option value="" disabled>Pilih Detail Penerimaan</option>
-                            @foreach ($detailPenerimaan as $item)
-                                <option value="{{ $item->detail_penerimaan_id }}"
-                                    {{ $item->detail_penerimaan_id == $detailRetur->detail_penerimaan_id ? 'selected' : '' }}>
-                                    Detail Penerimaan Id: {{ $item->detail_penerimaan_id }} - {{ $item->nama_barang }}
+                            @foreach ($detailPenerimaan as $detailpenerimaan)
+                                <option value="{{ $detailpenerimaan->detail_penerimaan_id }}"
+                                    {{ $detailpenerimaan->detail_penerimaan_id == $detailRetur->detail_penerimaan_id ? 'selected' : '' }}>
+                                    Detail Penerimaan Id: {{ $detailpenerimaan->detail_penerimaan_id }} -
+                                    {{ $detailpenerimaan->nama_barang }}
                                 </option>
                             @endforeach
                         </select>

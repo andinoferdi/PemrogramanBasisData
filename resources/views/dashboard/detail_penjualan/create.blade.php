@@ -13,11 +13,13 @@
                         <label for="barang_id" class="form-label">Barang</label>
                         <select name="barang_id" class="form-control @error('barang_id') is-invalid @enderror" required>
                             <option value="" disabled selected>Pilih Barang</option>
-                            @foreach ($barang as $item)
-                                <option value="{{ $item->barang_id }}"
-                                    {{ old('barang_id') == $item->barang_id ? 'selected' : '' }}>
-                                    {{ $item->nama_barang }}
-                                </option>
+                            @foreach ($barang as $barang)
+                                @if ($barang->status == 1)
+                                    <option value="{{ $barang->barang_id }}"
+                                        {{ old('barang_id') == $barang->barang_id ? 'selected' : '' }}>
+                                        {{ $barang->nama_barang }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('barang_id')
@@ -49,10 +51,10 @@
                         <select name="penjualan_id" class="form-control @error('penjualan_id') is-invalid @enderror"
                             required>
                             <option value="" disabled selected>Pilih Penjualan</option>
-                            @foreach ($penjualan as $item)
-                                <option value="{{ $item->penjualan_id }}"
-                                    {{ old('penjualan_id') == $item->penjualan_id ? 'selected' : '' }}>
-                                    {{ $item->penjualan_id }} - {{ $item->username }}
+                            @foreach ($penjualan as $penjualan)
+                                <option value="{{ $penjualan->penjualan_id }}"
+                                    {{ old('penjualan_id') == $penjualan->penjualan_id ? 'selected' : '' }}>
+                                    {{ $penjualan->penjualan_id }} - {{ $penjualan->username }}
                                 </option>
                             @endforeach
                         </select>

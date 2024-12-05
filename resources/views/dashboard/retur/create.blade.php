@@ -14,11 +14,13 @@
                         <label for="user_id" class="form-label">User</label>
                         <select name="user_id" class="form-control @error('user_id') is-invalid @enderror" required>
                             <option value="" disabled selected>Pilih User</option>
-                            @foreach ($user as $item)
-                                <option value="{{ $item->user_id }}"
-                                    {{ old('user_id') == $item->user_id ? 'selected' : '' }}>
-                                    {{ $item->username }}
-                                </option>
+                            @foreach ($user as $user)
+                                @if (auth()->user()->role_id == 1 || auth()->user()->user_id == $user->user_id)
+                                    <option value="{{ $user->user_id }}"
+                                        {{ old('user_id') == $user->user_id ? 'selected' : '' }}>
+                                        {{ $user->username }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('user_id')
@@ -31,10 +33,10 @@
                         <select name="penerimaan_id" class="form-control @error('penerimaan_id') is-invalid @enderror"
                             required>
                             <option value="" disabled selected>Pilih Penerimaan</option>
-                            @foreach ($penerimaan as $item)
-                                <option value="{{ $item->penerimaan_id }}"
-                                    {{ old('penerimaan_id') == $item->penerimaan_id ? 'selected' : '' }}>
-                                    Penerimaan ID: {{ $item->penerimaan_id }} - Vendor: {{ $item->nama_vendor }}
+                            @foreach ($penerimaan as $penerimaan)
+                                <option value="{{ $penerimaan->penerimaan_id }}"
+                                    {{ old('penerimaan_id') == $penerimaan->penerimaan_id ? 'selected' : '' }}>
+                                    Penerimaan ID: {{ $penerimaan->penerimaan_id }} - Vendor: {{ $penerimaan->nama_vendor }}
                                 </option>
                             @endforeach
                         </select>

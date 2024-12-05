@@ -31,11 +31,13 @@
                     <div class="mb-3">
                         <label for="satuan_id" class="form-label">Satuan</label>
                         <select name="satuan_id" class="form-control @error('satuan_id') is-invalid @enderror" required>
-                            @foreach ($satuan as $item)
-                                <option value="{{ $item->satuan_id }}"
-                                    {{ $item->satuan_id == $barang->satuan_id ? 'selected' : '' }}>
-                                    {{ $item->nama_satuan }}
-                                </option>
+                            @foreach ($satuan as $satuan)
+                                @if ($satuan->status == 1)
+                                    <option value="{{ $satuan->satuan_id }}"
+                                        {{ $satuan->satuan_id == $barang->satuan_id ? 'selected' : '' }}>
+                                        {{ $satuan->nama_satuan }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('satuan_id')

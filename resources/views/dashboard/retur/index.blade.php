@@ -29,15 +29,15 @@
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
-                        @forelse ($retur as $item)
+                        @forelse ($retur as $retur)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->username }}</td>
-                                <td>{{ $item->penerimaan_id }} - {{ $item->nama_vendor }}</td>
+                                <td>{{ $retur->username }}</td>
+                                <td>{{ $retur->penerimaan_id }} - {{ $retur->nama_vendor }}</td>
                                 <td>
-                                    <a href="{{ route('retur.edit', $item->retur_id) }}"
+                                    <a href="{{ route('retur.edit', $retur->retur_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('retur.destroy', $item->retur_id) }}" method="POST"
+                                    <form action="{{ route('retur.destroy', $retur->retur_id) }}" method="POST"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

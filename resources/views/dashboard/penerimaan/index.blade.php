@@ -30,17 +30,17 @@
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
-                        @forelse ($penerimaan as $item)
+                        @forelse ($penerimaan as $penerimaan)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->pengadaan_id }}</td>
-                                <td>{{ $item->nama_vendor }}</td>
-                                <td>{{ $item->username }}</td>
+                                <td>{{ $penerimaan->pengadaan_id }}</td>
+                                <td>{{ $penerimaan->nama_vendor }}</td>
+                                <td>{{ $penerimaan->username }}</td>
                                 <td>
-                                    <a href="{{ route('penerimaan.edit', $item->penerimaan_id) }}"
+                                    <a href="{{ route('penerimaan.edit', $penerimaan->penerimaan_id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('penerimaan.destroy', $item->penerimaan_id) }}" method="POST"
-                                        style="display:inline;">
+                                    <form action="{{ route('penerimaan.destroy', $penerimaan->penerimaan_id) }}"
+                                        method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

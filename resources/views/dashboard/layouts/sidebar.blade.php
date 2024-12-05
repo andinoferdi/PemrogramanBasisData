@@ -53,25 +53,6 @@
                 </a>
             </div>
 
-            <div class="menu-item py-3">
-                <a class="menu-link {{ request()->routeIs('role.*') ? 'active' : '' }} menu-center"
-                    href="{{ route('role.index') }}" title="Role" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                    data-bs-dismiss="click" data-bs-placement="right">
-                    <span class="menu-icon me-0">
-                        <i class="bi bi-shield-lock fs-2"></i>
-                    </span>
-                </a>
-            </div>
-
-            <div class="menu-item py-3">
-                <a class="menu-link {{ request()->routeIs('user.*') ? 'active' : '' }} menu-center"
-                    href="{{ route('user.index') }}" title="User" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                    data-bs-dismiss="click" data-bs-placement="right">
-                    <span class="menu-icon me-0">
-                        <i class="bi bi-person fs-2"></i>
-                    </span>
-                </a>
-            </div>
 
             <div class="menu-item py-3">
                 <a class="menu-link {{ request()->routeIs('pengadaan.*') || request()->routeIs('detail_pengadaan.*') ? 'active' : '' }} ? 'active' : '' }} menu-center"
@@ -95,8 +76,8 @@
 
             <div class="menu-item py-3">
                 <a class="menu-link {{ request()->routeIs('retur.*') || request()->routeIs('detail_retur.*') ? 'active' : '' }} menu-center"
-                    href="{{ route('retur.index') }}" title="retur" data-bs-toggle="tooltip"
-                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    href="{{ route('retur.index') }}" title="retur" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                    data-bs-dismiss="click" data-bs-placement="right">
                     <span class="menu-icon me-0">
                         <i class="bi bi-arrow-repeat fs-2"></i>
                     </span>
@@ -116,7 +97,7 @@
 
 
             <div class="menu-item py-3">
-                <a class="menu-link {{ request()->routeIs('penjualan.*') ? 'active' : '' }} menu-center"
+                <a class="menu-link {{ request()->routeIs('penjualan.*') || request()->routeIs('detail_penjualan.*') ? 'active' : '' }} menu-center"
                     href="{{ route('penjualan.index') }}" title="Penjualan" data-bs-toggle="tooltip"
                     data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                     <span class="menu-icon me-0">
@@ -125,7 +106,35 @@
                 </a>
             </div>
 
+            <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('kartu-stok.index') ? 'active' : '' }} menu-center"
+                    href="{{ route('kartu-stok.index') }}" title="Kartu Stok" data-bs-toggle="tooltip"
+                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-box fs-2"></i>
+                    </span>
+                </a>
+            </div>
 
+            <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('role.*') ? 'active' : '' }} menu-center"
+                    href="{{ route('role.index') }}" title="Role" data-bs-toggle="tooltip"
+                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-shield-lock fs-2"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="menu-item py-3">
+                <a class="menu-link {{ request()->routeIs('user.*') ? 'active' : '' }} menu-center"
+                    href="{{ route('user.index') }}" title="User" data-bs-toggle="tooltip"
+                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                    <span class="menu-icon me-0">
+                        <i class="bi bi-person fs-2"></i>
+                    </span>
+                </a>
+            </div>
 
         </div>
     </div>

@@ -13,8 +13,8 @@
                         <label for="retur_id" class="form-label">Retur</label>
                         <select name="retur_id" class="form-control @error('retur_id') is-invalid @enderror" required>
                             <option value="" disabled selected>Pilih Retur Id</option>
-                            @foreach ($retur as $item)
-                                <option value="{{ $item->retur_id }}">Retur Id: {{ $item->retur_id }}</option>
+                            @foreach ($retur as $retur)
+                                <option value="{{ $retur->retur_id }}">Retur Id: {{ $retur->retur_id }}</option>
                             @endforeach
                         </select>
                         @error('retur_id')
@@ -27,9 +27,10 @@
                         <select name="detail_penerimaan_id"
                             class="form-control @error('detail_penerimaan_id') is-invalid @enderror" required>
                             <option value="" disabled selected>Pilih Detail Penerimaan</option>
-                            @foreach ($detailPenerimaan as $item)
-                                <option value="{{ $item->detail_penerimaan_id }}">Detail Penerimaan Id :
-                                    {{ $item->detail_penerimaan_id }} - {{ $item->nama_barang }}</option>
+                            @foreach ($detailPenerimaan as $detailpenerimaan)
+                                <option value="{{ $detailpenerimaan->detail_penerimaan_id }}">Detail Penerimaan Id :
+                                    {{ $detailpenerimaan->detail_penerimaan_id }} - {{ $detailpenerimaan->nama_barang }}
+                                </option>
                             @endforeach
                         </select>
                         @error('detail_penerimaan_id')

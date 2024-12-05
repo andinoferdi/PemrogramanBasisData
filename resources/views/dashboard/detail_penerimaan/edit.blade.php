@@ -16,11 +16,13 @@
                         <label for="barang_id" class="form-label">Barang</label>
                         <select name="barang_id" class="form-control @error('barang_id') is-invalid @enderror" required>
                             <option value="" disabled selected>Pilih Barang</option>
-                            @foreach ($barang as $item)
-                                <option value="{{ $item->barang_id }}"
-                                    {{ $detailPenerimaan->barang_id == $item->barang_id ? 'selected' : '' }}>
-                                    {{ $item->nama_barang }}
-                                </option>
+                            @foreach ($barang as $barang)
+                                @if ($barang->status == 1)
+                                    <option value="{{ $barang->barang_id }}"
+                                        {{ $detailPenerimaan->barang_id == $barang->barang_id ? 'selected' : '' }}>
+                                        {{ $barang->nama_barang }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('barang_id')
@@ -53,10 +55,10 @@
                         <select name="penerimaan_id" class="form-control @error('penerimaan_id') is-invalid @enderror"
                             required>
                             <option value="" disabled>Pilih Penerimaan</option>
-                            @foreach ($penerimaan as $item)
-                                <option value="{{ $item->penerimaan_id }}"
-                                    {{ $detailPenerimaan->penerimaan_id == $item->penerimaan_id ? 'selected' : '' }}>
-                                    {{ $item->penerimaan_id }}
+                            @foreach ($penerimaan as $penerimaan)
+                                <option value="{{ $penerimaan->penerimaan_id }}"
+                                    {{ $detailPenerimaan->penerimaan_id == $penerimaan->penerimaan_id ? 'selected' : '' }}>
+                                    {{ $penerimaan->penerimaan_id }}
                                 </option>
                             @endforeach
                         </select>

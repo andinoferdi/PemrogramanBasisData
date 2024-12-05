@@ -30,14 +30,17 @@
                         <label for="satuan_id" class="form-label">Satuan</label>
                         <select name="satuan_id" class="form-control @error('satuan_id') is-invalid @enderror" required>
                             <option value="" disabled selected>Pilih satuan</option>
-                            @foreach ($satuan as $item)
-                                <option value="{{ $item->satuan_id }}">{{ $item->nama_satuan }}</option>
+                            @foreach ($satuan as $satuan)
+                                @if ($satuan->status == 1)
+                                    <option value="{{ $satuan->satuan_id }}">{{ $satuan->nama_satuan }}</option>
+                                @endif
                             @endforeach
                         </select>
                         @error('satuan_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" class="form-control @error('status') is-invalid @enderror" required>

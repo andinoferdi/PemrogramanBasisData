@@ -16,10 +16,12 @@
                         <label for="user_id" class="form-label">User</label>
                         <select name="user_id" class="form-select @error('user_id') is-invalid @enderror" required>
                             @foreach ($users as $user)
-                                <option value="{{ $user->user_id }}"
-                                    {{ $user->user_id == $pengadaan->user_id ? 'selected' : '' }}>
-                                    {{ $user->username }}
-                                </option>
+                                @if (auth()->user()->role_id == 1 || auth()->user()->user_id == $user->user_id)
+                                    <option value="{{ $user->user_id }}"
+                                        {{ $user->user_id == $pengadaan->user_id ? 'selected' : '' }}>
+                                        {{ $user->username }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('user_id')
@@ -30,11 +32,14 @@
                     <div class="mb-3">
                         <label for="vendor_id" class="form-label">Vendor</label>
                         <select name="vendor_id" class="form-select @error('vendor_id') is-invalid @enderror" required>
+                            <option value="" disabled selected>Pilih vendor</option>
                             @foreach ($vendor as $v)
-                                <option value="{{ $v->vendor_id }}"
-                                    {{ $v->vendor_id == $pengadaan->vendor_id ? 'selected' : '' }}>
-                                    {{ $v->nama_vendor }}
-                                </option>
+                                @if ($v->status == 1)
+                                    <option value="{{ $v->vendor_id }}"
+                                        {{ $v->vendor_id == $pengadaan->vendor_id ? 'selected' : '' }}>
+                                        {{ $v->nama_vendor }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @error('vendor_id')
