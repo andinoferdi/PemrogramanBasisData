@@ -1,63 +1,69 @@
 
-# Laravel Inventory Management System
+# Sistem Pengelolaan Barang dengan Laravel
 
-This project is a **Web Application for Managing Procurement, Sales, Receipt, Stock, and Returns of Goods** built with **Laravel** framework. The application provides a seamless way to manage inventory data, transactions, and reporting.
+Aplikasi ini adalah sistem pengelolaan data barang berbasis web yang dikembangkan menggunakan framework Laravel. Aplikasi ini dirancang untuk mendukung pengelolaan pengadaan, penerimaan, penjualan, retur, dan kartu stok barang.
 
-## Features
+## Fitur Utama
 
-### Core Modules
-- **User Management**:
-  - Create, Read, Update, Delete users with different roles.
-- **Procurement Management**:
-  - Record procurement transactions, including vendors and items.
-  - Calculate totals with tax inclusion (PPN).
-- **Stock Receipt Management**:
-  - Record received items from procurement.
-  - Automatically update stock in the system.
-- **Sales Management**:
-  - Record sales transactions.
-  - Automatically reduce stock based on sold items.
-- **Return Management**:
-  - Handle returned goods and adjust stock accordingly.
-- **Stock Card**:
-  - Track stock movements (in and out) for each item.
+1. **Pengadaan Barang**
+   - Tambah pengadaan barang dari vendor.
+   - Kelola data pengadaan seperti jumlah barang dan total nilai pengadaan.
 
-### Key Functionalities
-- **Data Validation**: Ensures transactions like receipts and sales respect stock availability.
-- **Triggers and Stored Procedures**:
-  - Automatically update stock card for every transaction.
-  - Validate data integrity across all modules.
-- **Custom Views**:
-  - For reporting purposes, including a detailed stock card view.
+2. **Penerimaan Barang**
+   - Mencatat penerimaan barang berdasarkan pengadaan.
+   - Validasi jumlah barang yang diterima tidak melebihi jumlah pengadaan.
 
-## Installation
+3. **Penjualan Barang**
+   - Mencatat transaksi penjualan barang.
+   - Pengurangan otomatis stok barang berdasarkan jumlah penjualan.
 
-### Requirements
-- PHP 8.0 or higher
-- MySQL 8.0 or higher
-- Composer
-- Laravel 9.x
+4. **Retur Barang**
+   - Mencatat barang yang diretur.
+   - Penyesuaian otomatis stok barang berdasarkan retur.
 
-## Usage
+5. **Kartu Stok**
+   - Melihat riwayat pergerakan stok barang secara rinci.
+   - Menampilkan jenis transaksi, jumlah masuk, keluar, dan saldo akhir barang.
 
-### User Roles
-- **Admin**: Full access to all modules and data.
+## Teknologi yang Digunakan
 
-### Workflow
-1. **Procurement**:
-   - Admin records procurement with vendor details and item quantities.
-2. **Stock Receipt**:
-   - Admin/Staff records received items against procurement.
-   - Updates stock automatically.
-3. **Sales**:
-   - Staff records sales transactions, reducing stock.
-4. **Returns**:
-   - Staff records returned items, adjusting stock accordingly.
-5. **Stock Card**:
-   - Admin views detailed stock movements for each item.
+- **Framework**: Laravel
+- **Database**: MySQL
+- **Frontend**: Blade Template
 
-## Contributing
-Contributions are welcome! Please follow the [contribution guide](CONTRIBUTING.md).
 
-## License
-This project is open-source and licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Penggunaan
+
+### Pengadaan Barang
+1. Masuk ke menu **Pengadaan Barang**.
+2. Klik **Tambah Pengadaan** dan isi detail pengadaan.
+3. Simpan pengadaan untuk mencatat transaksi.
+
+### Penerimaan Barang
+1. Masuk ke menu **Penerimaan Barang**.
+2. Pilih pengadaan yang sesuai dan masukkan jumlah barang yang diterima.
+3. Pastikan jumlah barang yang diterima tidak melebihi jumlah pengadaan.
+
+### Penjualan Barang
+1. Masuk ke menu **Penjualan Barang**.
+2. Pilih barang yang akan dijual dan masukkan jumlahnya.
+3. Sistem akan otomatis mengurangi stok barang.
+
+### Retur Barang
+1. Masuk ke menu **Retur Barang**.
+2. Pilih barang yang akan diretur dan masukkan jumlahnya.
+3. Sistem akan otomatis memperbarui stok barang.
+
+### Kartu Stok
+1. Masuk ke menu **Kartu Stok**.
+2. Lihat riwayat pergerakan stok barang.
+3. Data yang ditampilkan meliputi transaksi masuk, keluar, dan saldo akhir.
+
+## Kontribusi
+
+Jika Anda ingin berkontribusi pada proyek ini, silakan kirimkan pull request ke repositori.
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).
+
