@@ -41,7 +41,8 @@
                         <label for="jumlah_terima" class="form-label">Jumlah Terima</label>
                         <input type="number" name="jumlah_terima"
                             class="form-control @error('jumlah_terima') is-invalid @enderror"
-                            value="{{ old('jumlah_terima') }}" autocomplete="off" required>
+                            value="{{ old('jumlah_terima') }}" autocomplete="off" required id="jumlah_terima">
+                        <input type="hidden" id="jumlah_pengadaan" value="{{ old('jumlah_pengadaan') }}">
                         @error('jumlah_terima')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

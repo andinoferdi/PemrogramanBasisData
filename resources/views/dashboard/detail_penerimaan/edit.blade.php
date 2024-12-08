@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         <label for="barang_id" class="form-label">Barang</label>
                         <select name="barang_id" class="form-control @error('barang_id') is-invalid @enderror" required>
-                            <option value="" disabled selected>Pilih Barang</option>
+                            <option value="" disabled>Pilih Barang</option>
                             @foreach ($barang as $barang)
                                 @if ($barang->status == 1)
                                     <option value="{{ $barang->barang_id }}"

@@ -37,7 +37,7 @@
                                 <td>{{ $pengadaan->nama_vendor }}</td>
                                 <td>{{ number_format($pengadaan->total_nilai, 0, ',', '.') }}</td>
                                 <td class="{{ $pengadaan->status == 0 ? 'text-danger' : 'text-success' }}">
-                                    {{ $pengadaan->status == 0 ? 'Pending' : 'Sukses' }}
+                                    {{ $pengadaan->status == 0 ? 'Belum diterima' : 'Diterima' }}
                                 </td>
                                 <td>
                                     <a href="{{ route('pengadaan.edit', $pengadaan->pengadaan_id) }}"
