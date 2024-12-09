@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80030 (8.0.30)
  Source Host           : localhost:3306
- Source Schema         : uasbasdat
+ Source Schema         : test
 
  Target Server Type    : MySQL
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 08/12/2024 23:32:48
+ Date: 09/12/2024 23:05:57
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `barang`  (
   PRIMARY KEY (`barang_id`) USING BTREE,
   INDEX `satuan_id`(`satuan_id` ASC) USING BTREE,
   CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`satuan_id`) REFERENCES `satuan` (`satuan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for detail_penerimaan
@@ -50,7 +50,7 @@ CREATE TABLE `detail_penerimaan`  (
   INDEX `barang_id`(`barang_id` ASC) USING BTREE,
   CONSTRAINT `detail_penerimaan_ibfk_1` FOREIGN KEY (`penerimaan_id`) REFERENCES `penerimaan` (`penerimaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detail_penerimaan_ibfk_2` FOREIGN KEY (`barang_id`) REFERENCES `barang` (`barang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for detail_pengadaan
@@ -68,7 +68,7 @@ CREATE TABLE `detail_pengadaan`  (
   INDEX `barang_id`(`barang_id` ASC) USING BTREE,
   CONSTRAINT `detail_pengadaan_ibfk_1` FOREIGN KEY (`pengadaan_id`) REFERENCES `pengadaan` (`pengadaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detail_pengadaan_ibfk_2` FOREIGN KEY (`barang_id`) REFERENCES `barang` (`barang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for detail_penjualan
@@ -86,7 +86,7 @@ CREATE TABLE `detail_penjualan`  (
   INDEX `barang_id`(`barang_id` ASC) USING BTREE,
   CONSTRAINT `detail_penjualan_ibfk_1` FOREIGN KEY (`penjualan_id`) REFERENCES `penjualan` (`penjualan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detail_penjualan_ibfk_2` FOREIGN KEY (`barang_id`) REFERENCES `barang` (`barang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for detail_retur
@@ -103,7 +103,7 @@ CREATE TABLE `detail_retur`  (
   INDEX `detail_penerimaan_id`(`detail_penerimaan_id` ASC) USING BTREE,
   CONSTRAINT `detail_retur_ibfk_1` FOREIGN KEY (`retur_id`) REFERENCES `retur` (`retur_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detail_retur_ibfk_2` FOREIGN KEY (`detail_penerimaan_id`) REFERENCES `detail_penerimaan` (`detail_penerimaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for kartu_stok
@@ -121,7 +121,7 @@ CREATE TABLE `kartu_stok`  (
   PRIMARY KEY (`kartu_stok_id`) USING BTREE,
   INDEX `barang_id`(`barang_id` ASC) USING BTREE,
   CONSTRAINT `kartu_stok_ibfk_1` FOREIGN KEY (`barang_id`) REFERENCES `barang` (`barang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for margin_penjualan
@@ -137,7 +137,7 @@ CREATE TABLE `margin_penjualan`  (
   PRIMARY KEY (`margin_penjualan_id`) USING BTREE,
   INDEX `user_id`(`user_id` ASC) USING BTREE,
   CONSTRAINT `margin_penjualan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for penerimaan
@@ -153,7 +153,7 @@ CREATE TABLE `penerimaan`  (
   INDEX `user_id`(`user_id` ASC) USING BTREE,
   CONSTRAINT `penerimaan_ibfk_1` FOREIGN KEY (`pengadaan_id`) REFERENCES `pengadaan` (`pengadaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `penerimaan_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pengadaan
@@ -173,7 +173,7 @@ CREATE TABLE `pengadaan`  (
   INDEX `vendor_id`(`vendor_id` ASC) USING BTREE,
   CONSTRAINT `pengadaan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `pengadaan_ibfk_2` FOREIGN KEY (`vendor_id`) REFERENCES `vendor` (`vendor_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for penjualan
@@ -192,7 +192,7 @@ CREATE TABLE `penjualan`  (
   INDEX `margin_penjualan_id`(`margin_penjualan_id` ASC) USING BTREE,
   CONSTRAINT `penjualan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `penjualan_ibfk_2` FOREIGN KEY (`margin_penjualan_id`) REFERENCES `margin_penjualan` (`margin_penjualan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for retur
@@ -208,7 +208,7 @@ CREATE TABLE `retur`  (
   INDEX `penerimaan_id`(`penerimaan_id` ASC) USING BTREE,
   CONSTRAINT `retur_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `retur_ibfk_2` FOREIGN KEY (`penerimaan_id`) REFERENCES `penerimaan` (`penerimaan_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for role
@@ -218,7 +218,7 @@ CREATE TABLE `role`  (
   `role_id` int NOT NULL AUTO_INCREMENT,
   `nama_role` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for satuan
@@ -231,7 +231,7 @@ CREATE TABLE `satuan`  (
   `created_at` datetime NULL DEFAULT NULL,
   `updated_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`satuan_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for user
@@ -246,7 +246,7 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`user_id`) USING BTREE,
   INDEX `role_id`(`role_id` ASC) USING BTREE,
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for vendor
@@ -258,7 +258,7 @@ CREATE TABLE `vendor`  (
   `badan_hukum` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `status` tinyint NOT NULL,
   PRIMARY KEY (`vendor_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- View structure for v_kartu_stok
@@ -274,48 +274,12 @@ delimiter ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertBarang`(IN p_jenis CHAR(1),
     IN p_nama_barang VARCHAR(45),
     IN p_satuan_id INT,
-    IN p_status TINYINT, -- Ubah menjadi TINYINT
+    IN p_status TINYINT, 
     IN p_harga INT)
 BEGIN
     INSERT INTO barang (jenis, nama_barang, satuan_id, status, harga)
     VALUES (p_jenis, p_nama_barang, p_satuan_id, p_status, p_harga);
     SELECT LAST_INSERT_ID() AS barang_id;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for InsertDetailPenerimaan
--- ----------------------------
-DROP PROCEDURE IF EXISTS `InsertDetailPenerimaan`;
-delimiter ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertDetailPenerimaan`(
-    IN barang_id INT,
-    IN harga_satuan_terima INT,
-    IN jumlah_terima INT,
-    IN penerimaan_id BIGINT,
-    IN subtotal_terima INT
-)
-BEGIN
-    INSERT INTO detail_penerimaan (barang_id, harga_satuan_terima, jumlah_terima, penerimaan_id, subtotal_terima)
-    VALUES (barang_id, harga_satuan_terima, jumlah_terima, penerimaan_id, subtotal_terima);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for InsertDetailPengadaan
--- ----------------------------
-DROP PROCEDURE IF EXISTS `InsertDetailPengadaan`;
-delimiter ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertDetailPengadaan`(IN pengadaan_id BIGINT,
-    IN barang_id INT,
-    IN harga_satuan INT,
-    IN jumlah INT,
-    IN subtotal INT)
-BEGIN
-    INSERT INTO detail_pengadaan (pengadaan_id, barang_id, harga_satuan, jumlah, subtotal)
-    VALUES (pengadaan_id, barang_id, harga_satuan, jumlah, subtotal);
 END
 ;;
 delimiter ;
@@ -327,7 +291,6 @@ DROP PROCEDURE IF EXISTS `InsertPenerimaan`;
 delimiter ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertPenerimaan`(IN pengadaan_id INT, IN user_id INT)
 BEGIN
-    -- Insert data penerimaan
     INSERT INTO penerimaan (pengadaan_id, user_id)
     VALUES (pengadaan_id, user_id);
 END
@@ -527,13 +490,11 @@ delimiter ;;
 CREATE TRIGGER `check_jumlah_terima_before_insert` BEFORE INSERT ON `detail_penerimaan` FOR EACH ROW BEGIN
     DECLARE max_jumlah INT;
 
-    -- Ambil jumlah yang terdaftar di detail_pengadaan untuk barang yang sama
     SELECT jumlah INTO max_jumlah
     FROM detail_pengadaan
     WHERE barang_id = NEW.barang_id
     AND pengadaan_id = (SELECT pengadaan_id FROM penerimaan WHERE penerimaan_id = NEW.penerimaan_id LIMIT 1);
 
-    -- Cek apakah jumlah yang diterima melebihi jumlah yang tersedia
     IF NEW.jumlah_terima > max_jumlah THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Jumlah terima tidak boleh melebihi jumlah pengadaan';
     END IF;
@@ -549,18 +510,15 @@ delimiter ;;
 CREATE TRIGGER `after_insert_detail_penerimaan` AFTER INSERT ON `detail_penerimaan` FOR EACH ROW BEGIN
     DECLARE current_stock INT;
 
-    -- Ambil stok yang ada saat ini di kartu_stok
     SELECT stock INTO current_stock
     FROM kartu_stok
     WHERE barang_id = NEW.barang_id
     ORDER BY kartu_stok_id DESC LIMIT 1;
 
-    -- Jika stok sebelumnya tidak ada (NULL), set ke 0
     IF current_stock IS NULL THEN
         SET current_stock = 0;
     END IF;
 
-    -- Cek apakah stok sebelumnya sudah ada. Jika ada, hanya tambahkan jumlah yang diterima
     IF current_stock IS NOT NULL THEN
         INSERT INTO kartu_stok (jenis_transaksi, masuk, keluar, stock, created_at, transaksi_id, barang_id)
         VALUES ('O', NEW.jumlah_terima, 0, current_stock + NEW.jumlah_terima, NOW(), NEW.penerimaan_id, NEW.barang_id);
@@ -577,13 +535,11 @@ delimiter ;;
 CREATE TRIGGER `check_jumlah_terima_before_update` BEFORE UPDATE ON `detail_penerimaan` FOR EACH ROW BEGIN
     DECLARE max_jumlah INT;
 
-    -- Ambil jumlah yang terdaftar di detail_pengadaan untuk barang yang sama
     SELECT jumlah INTO max_jumlah
     FROM detail_pengadaan
     WHERE barang_id = NEW.barang_id
     AND pengadaan_id = (SELECT pengadaan_id FROM penerimaan WHERE penerimaan_id = NEW.penerimaan_id LIMIT 1);
 
-    -- Cek apakah jumlah yang diterima melebihi jumlah yang tersedia
     IF NEW.jumlah_terima > max_jumlah THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Jumlah terima tidak boleh melebihi jumlah pengadaan';
     END IF;
@@ -599,18 +555,15 @@ delimiter ;;
 CREATE TRIGGER `after_update_detail_penerimaan` AFTER UPDATE ON `detail_penerimaan` FOR EACH ROW BEGIN
     DECLARE current_stock INT;
 
-    -- Ambil stok yang ada saat ini di kartu_stok
     SELECT stock INTO current_stock
     FROM kartu_stok
     WHERE barang_id = NEW.barang_id
     ORDER BY kartu_stok_id DESC LIMIT 1;
 
-    -- Jika stok sebelumnya tidak ada (NULL), set ke 0
     IF current_stock IS NULL THEN
         SET current_stock = 0;
     END IF;
 
-    -- Cek apakah stok sebelumnya sudah ada. Jika ada, update stok berdasarkan perbedaan jumlah
     IF current_stock IS NOT NULL THEN
         INSERT INTO kartu_stok (jenis_transaksi, masuk, keluar, stock, created_at, transaksi_id, barang_id)
         VALUES ('O', NEW.jumlah_terima - OLD.jumlah_terima, 0, current_stock + (NEW.jumlah_terima - OLD.jumlah_terima), NOW(), NEW.penerimaan_id, NEW.barang_id);
@@ -627,18 +580,15 @@ delimiter ;;
 CREATE TRIGGER `after_delete_detail_penerimaan` AFTER DELETE ON `detail_penerimaan` FOR EACH ROW BEGIN
     DECLARE current_stock INT;
 
-    -- Ambil stok yang ada saat ini di kartu_stok
     SELECT stock INTO current_stock
     FROM kartu_stok
     WHERE barang_id = OLD.barang_id
     ORDER BY kartu_stok_id DESC LIMIT 1;
 
-    -- Jika stok sebelumnya tidak ada (NULL), set ke 0
     IF current_stock IS NULL THEN
         SET current_stock = 0;
     END IF;
 
-    -- Cek apakah stok sebelumnya sudah ada. Jika ada, kurangi stok berdasarkan jumlah yang dihapus
     IF current_stock IS NOT NULL THEN
         INSERT INTO kartu_stok (jenis_transaksi, masuk, keluar, stock, created_at, transaksi_id, barang_id)
         VALUES ('O', OLD.jumlah_terima, 0, current_stock - OLD.jumlah_terima, NOW(), OLD.penerimaan_id, OLD.barang_id);
@@ -655,7 +605,6 @@ delimiter ;;
 CREATE TRIGGER `after_insert_detail_pengadaan` AFTER INSERT ON `detail_pengadaan` FOR EACH ROW BEGIN
     DECLARE current_stock INT;
 
-    -- Ambil stock terakhir dari kartu_stok
     SELECT stock INTO current_stock
     FROM kartu_stok
     WHERE barang_id = NEW.barang_id
@@ -665,7 +614,6 @@ CREATE TRIGGER `after_insert_detail_pengadaan` AFTER INSERT ON `detail_pengadaan
         SET current_stock = 0;
     END IF;
 
-    -- Masukkan transaksi pengadaan ke kartu_stok, tanpa mengubah stock akhir
     INSERT INTO kartu_stok (jenis_transaksi, masuk, keluar, stock, created_at, transaksi_id, barang_id)
     VALUES ('P', NEW.jumlah, 0, current_stock, NOW(), NEW.pengadaan_id, NEW.barang_id);
 END
@@ -680,7 +628,6 @@ delimiter ;;
 CREATE TRIGGER `after_update_detail_pengadaan` AFTER UPDATE ON `detail_pengadaan` FOR EACH ROW BEGIN
     DECLARE current_stock INT;
 
-    -- Ambil stock terakhir dari kartu_stok
     SELECT stock INTO current_stock
     FROM kartu_stok
     WHERE barang_id = NEW.barang_id
@@ -690,7 +637,6 @@ CREATE TRIGGER `after_update_detail_pengadaan` AFTER UPDATE ON `detail_pengadaan
         SET current_stock = 0;
     END IF;
 
-    -- Masukkan transaksi pengadaan yang diperbarui
     INSERT INTO kartu_stok (jenis_transaksi, masuk, keluar, stock, created_at, transaksi_id, barang_id)
     VALUES ('P', NEW.jumlah - OLD.jumlah, 0, current_stock + (NEW.jumlah - OLD.jumlah), NOW(), NEW.pengadaan_id, NEW.barang_id);
 END
@@ -742,33 +688,25 @@ CREATE TRIGGER `after_update_detail_penjualan` AFTER UPDATE ON `detail_penjualan
     DECLARE current_stock INT;
     DECLARE stock_change INT;
 
-    -- Ambil stok barang saat ini
     SELECT stock INTO current_stock
     FROM kartu_stok
     WHERE barang_id = NEW.barang_id
     ORDER BY kartu_stok_id DESC LIMIT 1;
 
-    -- Jika stok barang tidak ada, set menjadi 0
     IF current_stock IS NULL THEN
         SET current_stock = 0;
     END IF;
 
-    -- Menghitung perubahan stok berdasarkan perbedaan jumlah yang dijual
     SET stock_change = NEW.jumlah - OLD.jumlah;
 
-    -- Jika jumlah penjualan bertambah, kurangi stok sesuai perubahan
     IF stock_change > 0 THEN
-        -- Pastikan stok cukup sebelum menambahkan perubahan
         IF current_stock < stock_change THEN
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stok tidak cukup untuk penjualan';
         ELSE
-            -- Jika cukup, lakukan update kartu_stok untuk pengurangan stok
             INSERT INTO kartu_stok (jenis_transaksi, masuk, keluar, stock, created_at, transaksi_id, barang_id)
             VALUES ('S', 0, stock_change, current_stock - stock_change, NOW(), NEW.penjualan_id, NEW.barang_id);
         END IF;
-    -- Jika jumlah penjualan berkurang, tambahkan stok sesuai perubahan
     ELSEIF stock_change < 0 THEN
-        -- Mengembalikan stok yang tidak jadi terjual
         INSERT INTO kartu_stok (jenis_transaksi, masuk, keluar, stock, created_at, transaksi_id, barang_id)
         VALUES ('S', -stock_change, 0, current_stock - stock_change, NOW(), NEW.penjualan_id, NEW.barang_id);
     END IF;
@@ -882,7 +820,7 @@ CREATE TRIGGER `update_status_after_insert_penerimaan` AFTER INSERT ON `penerima
 
     IF total_penerimaan > 0 THEN
         UPDATE pengadaan
-        SET status = 1  -- status Sukses
+        SET status = 1  
         WHERE pengadaan_id = NEW.pengadaan_id;
     END IF;
 END
