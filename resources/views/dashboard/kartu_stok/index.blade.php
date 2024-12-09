@@ -25,7 +25,9 @@
                             <th>Stok Masuk</th>
                             <th>Stok Keluar</th>
                             <th>Stok Akhir</th>
+                            <th>Stok Terkini</th>
                             <th>Tanggal Transaksi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
@@ -46,11 +48,28 @@
                                         Unknown
                                     @endif
                                 </td>
-
                                 <td>{{ $kartu->masuk }}</td>
                                 <td>{{ $kartu->keluar }}</td>
                                 <td>{{ $kartu->stock }}</td>
+                                <td>
+                                    @php
+                                        $currentStock = DB::selectOne('SELECT get_current_stock(?) AS current_stock', [
+                                            $kartu->kartu_barang_id,
+                                        ]);
+                                    @endphp
+                                    {{ $currentStock->current_stock ?? '0' }}
+                                </td>
                                 <td>{{ \Carbon\Carbon::parse($kartu->created_at)->format('d-m-Y H:i:s') }}</td>
+                                <td>
+                                    <form action="{{ route('kartu-stok.destroy', $kartu->kartu_barang_id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

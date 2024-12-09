@@ -1,5 +1,57 @@
 DROP VIEW IF EXISTS `v_kartu_stok`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_kartu_stok` AS select `ks`.`barang_id` AS `kartu_barang_id`,`b`.`nama_barang` AS `nama_barang`,`ks`.`jenis_transaksi` AS `jenis_transaksi`,`ks`.`masuk` AS `masuk`,`ks`.`keluar` AS `keluar`,`ks`.`stock` AS `stock`,`ks`.`created_at` AS `created_at`,`ks`.`transaksi_id` AS `transaksi_id`,ifnull((select sum((`kartu_stok`.`masuk` - `kartu_stok`.`keluar`)) from `kartu_stok` where ((`kartu_stok`.`barang_id` = `ks`.`barang_id`) and (`kartu_stok`.`created_at` <= `ks`.`created_at`) and (`kartu_stok`.`jenis_transaksi` <> 'P'))),0) AS `saldo` from (`kartu_stok` `ks` join `barang` `b` on((`ks`.`barang_id` = `b`.`barang_id`))) order by `ks`.`created_at` desc;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_kartu_stok` AS 
+SELECT 
+    `ks`.`barang_id` AS `kartu_barang_id`,
+    `b`.`nama_barang` AS `nama_barang`,
+    `ks`.`jenis_transaksi` AS `jenis_transaksi`,
+    `ks`.`masuk` AS `masuk`,
+    `ks`.`keluar` AS `keluar`,
+    `ks`.`stock` AS `stock`,
+    `ks`.`created_at` AS `created_at`,
+    IFNULL(
+        (
+            SELECT 
+                SUM((`kartu_stok`.`masuk` - `kartu_stok`.`keluar`)) 
+            FROM 
+                `kartu_stok` 
+            WHERE 
+                (`kartu_stok`.`barang_id` = `ks`.`barang_id`) 
+                AND (`kartu_stok`.`created_at` <= `ks`.`created_at`) 
+                AND (`kartu_stok`.`jenis_transaksi` <> 'P')
+        ),
+        0
+    ) AS `saldo`
+FROM 
+    (`kartu_stok` `ks` 
+    JOIN `barang` `b` ON (`ks`.`barang_id` = `b`.`barang_id`))
+ORDER BY 
+    `ks`.`created_at` DESC;
+
+DROP FUNCTION IF EXISTS get_current_stock;
+
+DELIMITER $$
+
+CREATE FUNCTION get_current_stock(p_barang_id BIGINT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE current_stock INT;
+
+    SELECT stock INTO current_stock
+    FROM kartu_stok
+    WHERE barang_id = p_barang_id
+    ORDER BY kartu_stok_id DESC
+    LIMIT 1;
+
+    IF current_stock IS NULL THEN
+        RETURN 0;
+    END IF;
+
+    RETURN current_stock;
+END$$
+
+DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS `InsertBarang`;
 delimiter ;;

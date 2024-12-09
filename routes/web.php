@@ -44,5 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('penjualan', PenjualanController::class);
    Route::resource('detail_penjualan', DetailPenjualanController::class);
    Route::get('/kartu_stok', [KartuStokController::class, 'index'])->name('kartu-stok.index');
+   Route::delete('/kartu-stok/{id}', [KartuStokController::class, 'destroy'])->name('kartu-stok.destroy');
+
 
 });

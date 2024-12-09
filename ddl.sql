@@ -190,7 +190,6 @@ CREATE TABLE kartu_stok  (
   keluar int NOT NULL,
   stock int NOT NULL,
   created_at timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  transaksi_id int NOT NULL,
   barang_id int NOT NULL,
   PRIMARY KEY (kartu_stok_id) USING BTREE,
   INDEX barang_id(barang_id ASC) USING BTREE,
